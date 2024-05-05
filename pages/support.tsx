@@ -19,7 +19,7 @@ export default function Support() {
         }
     };
 
-    const formatPhoneNumber = (event: React.ChangeEvent<HTMLFormElement>) => {
+    const formatPhoneNumber = (event: React.FormEvent<HTMLInputElement>) => {
         let inputValue = event.target.value;
         if (inputValue.length > 12) {
             inputValue = inputValue.slice(0, 12);
@@ -30,7 +30,7 @@ export default function Support() {
         event.target.value = inputValue;
     };
 
-    const formatRoomNumber = (event: React.ChangeEvent<HTMLFormElement>) => {
+    const formatRoomNumber = (event: React.FormEvent<HTMLInputElement>) => {
         let inputValue = event.target.value;
         inputValue = inputValue.replace(/\D/g, '');
         if (inputValue.length > 3) {
@@ -68,7 +68,7 @@ export default function Support() {
                 </select>
 
                 <label htmlFor="problemDescription">תיאור הבעיה:</label>
-                <textarea id="problemDescription" name="problemDescription" rows="20" cols="50" 
+                <textarea id="problemDescription" name="problemDescription"
                 placeholder="תאר את הבעיה" style={{ resize: 'none', fontFamily: 'Open Sans, sans-serif' }} 
                 autoComplete="off" aria-label="Problem Description"></textarea>
 
