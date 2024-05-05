@@ -4,9 +4,9 @@ import { useTheme } from 'next-themes';
 
 
 export default function Support() {
-    const formRef = useRef(null);
+    const formRef = useRef<HTMLFormElement>(null);
     
-    const handleSubmit = async (event) => {
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const formData = new FormData(formRef.current);
         const roomNumber = formData.get('roomNumber');
@@ -14,10 +14,10 @@ export default function Support() {
         const name = formData.get('name');
         const problemDescription = formData.get('problemDescription');
 
-        formRef.current.reset();
+        formRef.current?.reset
     };
 
-    const formatPhoneNumber = (event) => {
+    const formatPhoneNumber = (event: React.ChangeEvent<HTMLFormElement>) => {
         let inputValue = event.target.value;
         if (inputValue.length > 12) {
             inputValue = inputValue.slice(0, 12);
@@ -28,7 +28,7 @@ export default function Support() {
         event.target.value = inputValue;
     };
 
-    const formatRoomNumber = (event) => {
+    const formatRoomNumber = (event: React.ChangeEvent<HTMLFormElement>) => {
         let inputValue = event.target.value;
         inputValue = inputValue.replace(/\D/g, '');
         if (inputValue.length > 3) {
