@@ -1,7 +1,5 @@
 import Head from 'next/head';
 import { useRef } from 'react';
-import { useTheme } from 'next-themes';
-
 
 export default function Support() {
     const formRef = useRef<HTMLFormElement>(null);
@@ -49,7 +47,7 @@ export default function Support() {
                 <title>טופס בעיות מחשבים</title>
             </Head>
             <h1 className="title">טופס בעיות מחשבים</h1>
-            <img src="./rabin-logo.png" alt="Rabin Logo" className='logo'/>
+            <img src="rabin-logo.png" alt="Rabin Logo" className='logo'/>
             <form ref={formRef} onSubmit={handleSubmit} className="support-form">
                 <label htmlFor="roomNumber">מספר החדר/הכיתה:</label>
                 <input type="number" id="roomNumber" name="roomNumber" placeholder="דוגמה: 26" required 
