@@ -108,10 +108,12 @@ textarea[name="problemDescription"] {
   font-size: 80%;
 }
 
+.title-container {
+  display: flex;
+  justify-content: space-between;
+ }
+
 .logo {
-  position: fixed;
-  left: 0;
-  top: 0;
   z-index: 9999;
   max-width: 100%;
   max-height: auto;
