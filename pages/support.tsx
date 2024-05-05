@@ -45,10 +45,15 @@ export default function Support() {
         <div className="support-page">
             <Head>
                 <title>טופס בעיות מחשבים</title>
+                <meta name="description" content="טופס למילוי לבקשת עזרה בנוגע בעיות מחשבים"></meta>
+                <meta property="og:title" content="טופס בעיות מחשבים"></meta>
+                <meta property="og:url" content="https://rabincomputerspatrol.github.io/support"></meta>
+                {/* <meta property="og:image" content="></meta> */}
+                
+
             </Head>
-            
             <h1 className="title">טופס בעיות מחשבים
-            <img src="@/assets/rabin-logo.png" alt="Rabin Logo" className='logo'/>
+            <img src="/assets/rabin-logo.png" alt="Rabin Logo" className='logo'/>
             </h1>
             <form ref={formRef} onSubmit={handleSubmit} className="support-form">
                 <label htmlFor="roomNumber">מספר החדר/הכיתה:</label>
