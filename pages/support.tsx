@@ -48,13 +48,14 @@ export default function Support() {
                 <meta name="description" content="טופס למילוי לבקשת עזרה בנוגע בעיות מחשבים"></meta>
                 <meta property="og:title" content="טופס בעיות מחשבים"></meta>
                 <meta property="og:url" content="https://rabincomputerspatrol.github.io/support"></meta>
-                {/* <meta property="og:image" content="></meta> */}
+                <meta property="og:image" content="https://github.com/RabinComputersPatrol/rabincomputerspatrol.github.io/blob/d464054ac77e202cf2e7faf6dcadbf3c60137d07/public/assets/rabin-logo.png"></meta>
                 
 
             </Head>
-            <h1 className="title">טופס בעיות מחשבים
+            <div className='title-container'>
+            <h1 className="title">טופס בעיות מחשבים</h1>
             <img src="/assets/rabin-logo.png" alt="Rabin Logo" className='logo'/>
-            </h1>
+            </div>
             <form ref={formRef} onSubmit={handleSubmit} className="support-form">
                 <label htmlFor="roomNumber">מספר החדר/הכיתה:</label>
                 <input type="number" id="roomNumber" name="roomNumber" placeholder="דוגמה: 26" required 
