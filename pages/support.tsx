@@ -30,13 +30,15 @@ export default function Support() {
             const date = formatTime();
             console.log({ date, roomNumber, phoneNumber, name, priority, problemDescription });
 
+        
+
             try {
                 const docRef = await addDoc(collection(db,"reports"), {
                     date: date, 
-                    roomNumber: roomNumber,
+                    roomNumber: parseInt(roomNumber.toString()),
                     phoneNumber: phoneNumber,
                     name: name,
-                    priority: priority,
+                    priority: parseInt(priority.toString()),
                     problemDescription: problemDescription,           
                 });
                 console.log("Document written with ID: ", docRef.id);
@@ -67,7 +69,7 @@ export default function Support() {
                 <meta name="description" content="טופס למילוי לבקשת עזרה בנוגע בעיות מחשבים"></meta>
                 <meta property="og:title" content="טופס בעיות מחשבים"></meta>
                 <meta property="og:url" content="https://rabincomputerspatrol.github.io/support"></meta>
-                <meta property="og:image" content="https://github.com/RabinComputersPatrol/rabincomputerspatrol.github.io/blob/d464054ac77e202cf2e7faf6dcadbf3c60137d07/public/assets/rabin-logo.png"></meta>
+                <meta property="og:image" content="https://raw.githubusercontent.com/RabinComputersPatrol/rabincomputerspatrol.github.io/d464054ac77e202cf2e7faf6dcadbf3c60137d07/public/assets/rabin-logo.png"></meta>
             </Head>
 
             <div className='title-container'>
@@ -90,8 +92,8 @@ export default function Support() {
                 <input type="text" id="name" name="name" placeholder="הזן שם" required aria-label="Name" autoComplete="off" />
 
                 <label htmlFor="priority">דחיפות:</label>
-                <select name="priority" id="priority" aria-required autoComplete="off" required >   
-                    <option value="" disabled selected>אנא בחר את הדחיפות של הבעיה</option>
+                <select name="priority" id="priority" aria-required autoComplete="off" required  defaultValue={'DEFAULT'}>   
+                    <option value="DEFAULT" disabled >אנא בחר את הדחיפות של הבעיה</option>
                     <option value="5">דחוף מאוד</option>
                     <option value="4">דחוף</option>
                     <option value="3">חשוב</option>
