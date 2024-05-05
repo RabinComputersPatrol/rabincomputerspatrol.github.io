@@ -1,3 +1,9 @@
+:root {
+  --border-color-input: #ccc;
+  --border-radius-input: 4px;
+  --border-size-input: 2px;
+}
+
 .support-page {
   max-width: 800px;
   max-height: 800px;
@@ -20,43 +26,43 @@
     display: none;
   }
   .support-page {
-     max-width: 100%;
-     padding: 10px; 
-   }
- 
+    max-width: 100%;
+    padding: 10px;
+  }
+
   .title {
-     font-size: 18px; 
-   }
- 
+    font-size: 18px;
+  }
+
   .support-form {
-     flex-direction: column-reverse; 
-   }
- 
+    flex-direction: column-reverse;
+  }
+
   .support-form label {
-     font-size: 14px;
-   }
- 
+    font-size: 14px;
+  }
+
   .support-form input,
   .support-form textarea {
-     font-size: 14px;
-   }
- 
-   textarea[name="problemDescription"] {
+    font-size: 1var(--border-radius-input);
+  }
+
+  textarea[name="problemDescription"] {
     max-height: 100px;
-   }
+  }
 
   .support-form button {
-     padding: 8px 16px; 
-   }
- 
+    padding: 8px 16px;
+  }
+
   .footer {
-     font-size: 12px; 
-   }
- }
+    font-size: 12px;
+  }
+}
 
 
 .title {
-  font-size: 24px;
+  font-size: 2var(--border-radius-input);
   font-weight: bold;
   color: #333;
   margin-bottom: 20px;
@@ -76,8 +82,8 @@
 .support-form input,
 .support-form textarea {
   padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  border: var(--border-size-input) solid var(--border-color-input);
+  border-radius: var(--border-radius-input);
 }
 
 .support-form button {
@@ -85,31 +91,34 @@
   background-color: #007bff;
   color: white;
   border: none;
-  border-radius: 4px;
+  border-radius: var(--border-radius-input);
   cursor: pointer;
+  transition: transform 0.1s ease;
 }
 
 .support-form button:hover {
   background-color: #0056b3;
+  transform: scale(1.05);
+  /* height: 105%; */
 }
 
 textarea[name="problemDescription"] {
   height: 325px;
-  
 }
 
 .footer {
-  margin-top: 20px;
+  margin-top: 10px;
   text-align: center;
   color: #666;
 }
 
 .support-form select[name="priority"] {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  padding: 15px;
+  border: var(--border-size-input) solid var(--border-color-input);
+  border-radius: var(--border-radius-input);
   width: 100%;
-  font-size: 95%;
+  height: 70%;
+  font-size: 80%;
 }
 
 .title-container {
