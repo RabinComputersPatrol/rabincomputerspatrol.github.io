@@ -39,7 +39,8 @@ export default function Support() {
                     phoneNumber: phoneNumber,
                     name: name,
                     priority: parseInt(priority.toString()),
-                    problemDescription: problemDescription,           
+                    problemDescription: problemDescription,   
+                    completed: false,        
                 });
                 console.log("Document written with ID: ", docRef.id);
              } catch (e) {
