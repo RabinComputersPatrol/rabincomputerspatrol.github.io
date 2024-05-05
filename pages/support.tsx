@@ -43,7 +43,6 @@ export default function Support() {
                 <title>טופס בעיות מחשבים</title>
             </Head>
             <h1 className="title">טופס בעיות מחשבים</h1>
-            <ThemeToggle/>
             <form ref={formRef} onSubmit={handleSubmit} className="support-form">
                 <label htmlFor="roomNumber">מספר החדר/הכיתה:</label>
                 <input type="number" id="roomNumber" name="roomNumber" placeholder="דוגמה: 26" required 
