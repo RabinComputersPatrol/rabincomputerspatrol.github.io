@@ -111,7 +111,7 @@ textarea[name="problemDescription"] {
 .title-container {
   display: flex;
   justify-content: space-between;
- }
+}
 
 .logo {
   z-index: 9999;
