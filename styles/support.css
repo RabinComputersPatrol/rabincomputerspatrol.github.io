@@ -11,7 +11,20 @@
   padding: 20px;
 }
 
+@media only screen and (min-width: 480px) {
+  .logo-small{
+    display: none;
+  }
+  
+}
+
 @media only screen and (max-width: 480px) {
+  .logo-small{
+    display: block;
+  }
+  .logo-big {
+    display: none;
+  }
   .support-page {
     max-width: 100%;
     padding: 10px;
@@ -113,8 +126,13 @@ textarea[name="problemDescription"] {
   justify-content: space-between;
 }
 
-.logo {
+.logo-big {
   z-index: 9999;
-  max-width: 100%;
+  max-width: auto;
+  max-height: auto;
+}
+.logo-small {
+  z-index: 9999;
+  max-width: 60%;
   max-height: auto;
 }
