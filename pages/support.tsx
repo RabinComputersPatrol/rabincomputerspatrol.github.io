@@ -26,8 +26,25 @@ export default function Support() {
         event.preventDefault();
         if (formRef.current) {
             const formData = new FormData(formRef.current);
-            const { roomNumber, phoneNumber, name, problemDescription } = Object.fromEntries(formData.entries());
-            console.log({ roomNumber, phoneNumber, name, problemDescription });
+            const {roomNumber, phoneNumber, name, priority, problemDescription } = Object.fromEntries(formData.entries());
+            const date = formatTime();
+            console.log({ date, roomNumber, phoneNumber, name, priority, problemDescription });
+
+            try {
+                const docRef = await addDoc(collection(db,"reports"), {
+                    date: date, 
+                    roomNumber: roomNumber,
+                    phoneNumber: phoneNumber,
+                    name: name,
+                    priority: priority,
+                    problemDescription: problemDescription,           
+                });
+                console.log("Document written with ID: ", docRef.id);
+             } catch (e) {
+                console.error("Error adding document: ", e);
+             }    
+
+
             formRef.current.reset();
         }
     };
