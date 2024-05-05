@@ -46,8 +46,10 @@ export default function Support() {
             <Head>
                 <title>טופס בעיות מחשבים</title>
             </Head>
-            <h1 className="title">טופס בעיות מחשבים</h1>
-            <img src="rabin-logo.png" alt="Rabin Logo" className='logo'/>
+            
+            <h1 className="title">טופס בעיות מחשבים
+            <img src="@/assets/rabin-logo.png" alt="Rabin Logo" className='logo'/>
+            </h1>
             <form ref={formRef} onSubmit={handleSubmit} className="support-form">
                 <label htmlFor="roomNumber">מספר החדר/הכיתה:</label>
                 <input type="number" id="roomNumber" name="roomNumber" placeholder="דוגמה: 26" required 
