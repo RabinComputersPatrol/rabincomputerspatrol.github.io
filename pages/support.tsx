@@ -19,7 +19,8 @@ export default function Support() {
         }
     };
 
-    const formatPhoneNumber = (event: React.FormEvent<HTMLInputElement>) => {
+
+    const formatPhoneNumber = (event: React.ChangeEvent<HTMLInputElement>) => {
         let inputValue = event.target.value;
         if (inputValue.length > 12) {
             inputValue = inputValue.slice(0, 12);
@@ -28,16 +29,19 @@ export default function Support() {
             inputValue += '-';
         }
         event.target.value = inputValue;
-    };
-
-    const formatRoomNumber = (event: React.FormEvent<HTMLInputElement>) => {
-        let inputValue = event.target.value;
-        inputValue = inputValue.replace(/\D/g, '');
-        if (inputValue.length > 3) {
-            inputValue = inputValue.slice(0, 3);
-        }
         return inputValue;
     };
+    
+    const formatRoomNumber = (event: React.ChangeEvent<HTMLInputElement>) => {
+        let inputValue = event.target.value;
+        inputValue = inputValue.replace(/\D/g, ''); 
+        if (inputValue.length > 3) {
+            inputValue = inputValue.slice(0, 3); 
+        }
+        event.target.value = inputValue;
+        return inputValue;
+    };
+    
 
     return (
         <div className={"support-page"}>
