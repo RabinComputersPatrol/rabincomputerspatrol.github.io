@@ -112,6 +112,4 @@ export default function Support() {
             </footer>
         </div>
     );
-    }
-    }
 }
