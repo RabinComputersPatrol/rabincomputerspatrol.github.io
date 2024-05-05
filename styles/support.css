@@ -81,6 +81,7 @@
 }
 
 textarea[name="problemDescription"] {
+  max-height: 325px;
   
 }
 
