@@ -14,6 +14,7 @@
     "os": false
   },
   "dependencies": {
+    "dotenv": "^16.4.5",
     "firebase": "^10.11.1",
     "googleapis": "^136.0.0",
     "net": "^1.0.2",
