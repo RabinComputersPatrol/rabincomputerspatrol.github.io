@@ -98,3 +98,12 @@ textarea[name="problemDescription"] {
   width: 100%;
   font-size: 95%;
 }
+
+.logo {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 9999;
+  max-width: 100%;
+  max-height: auto;
+}
