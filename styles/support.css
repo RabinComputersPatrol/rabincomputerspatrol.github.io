@@ -7,9 +7,8 @@
 
 .support-page {
   max-width: 800px;
-  max-height: 800px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 10px;
 }
 
 @media only screen and (min-width: 480px) {
