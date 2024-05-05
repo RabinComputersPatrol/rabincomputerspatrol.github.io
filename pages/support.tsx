@@ -8,6 +8,7 @@ export default function Support() {
     
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
+        if (formRef.current) {
         const formData = new FormData(formRef.current);
         const roomNumber = formData.get('roomNumber');
         const phoneNumber = formData.get('phoneNumber');
@@ -15,6 +16,7 @@ export default function Support() {
         const problemDescription = formData.get('problemDescription');
 
         formRef.current?.reset
+        }
     };
 
     const formatPhoneNumber = (event: React.ChangeEvent<HTMLFormElement>) => {
