@@ -8,7 +8,7 @@
             "type": "chrome",
             "request": "launch",
             "name": "Launch Chrome against localhost",
-            "url": "http://localhost:3000/support",
+            "url": "http://localhost:3000/pages/support",
             "webRoot": "${workspaceFolder}"
         }
     ]
