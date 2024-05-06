@@ -3,21 +3,8 @@ import { useRef } from 'react';
 import formatTime from '@/public/utils';
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
-import { collection, addDoc } from "firebase/firestore"; 
-
-
-const firebaseConfig = {
-    apiKey: "AIzaSyBD5wyW9A1cTpErpWeS_5d_pHe3DufjXpY",
-    authDomain: "computerpatrol-5c961.firebaseapp.com",
-    projectId: "computerpatrol-5c961",
-    storageBucket: "computerpatrol-5c961.appspot.com",
-    messagingSenderId: "458287013012",
-    appId: "1:458287013012:web:1c5550b31f5449c4a72881"
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app)
-
+import { collection, addDoc } from "firebase/firestore";
+import { FirebaseDatabase } from './api/firebase';
 
 export default function Support() {
     const formRef = useRef<HTMLFormElement>(null);
@@ -26,26 +13,24 @@ export default function Support() {
         event.preventDefault();
         if (formRef.current) {
             const formData = new FormData(formRef.current);
-            const {roomNumber, phoneNumber, name, priority, problemDescription } = Object.fromEntries(formData.entries());
+            const { roomNumber, phoneNumber, name, priority, problemDescription } = Object.fromEntries(formData.entries());
             const date = formatTime();
             console.log({ date, roomNumber, phoneNumber, name, priority, problemDescription });
 
-        
-
             try {
-                const docRef = await addDoc(collection(db,"reports"), {
-                    date: date, 
+                const docRef = await addDoc(collection(FirebaseDatabase.firestore, "reports"), {
+                    date: date,
                     roomNumber: parseInt(roomNumber.toString()),
                     phoneNumber: phoneNumber,
                     name: name,
                     priority: parseInt(priority.toString()),
-                    problemDescription: problemDescription,   
-                    completed: false,        
+                    problemDescription: problemDescription,
+                    completed: false,
                 });
                 console.log("Document written with ID: ", docRef.id);
-             } catch (e) {
+            } catch (e) {
                 console.error("Error adding document: ", e);
-             }    
+            }
 
 
             formRef.current.reset();
@@ -74,9 +59,9 @@ export default function Support() {
             </Head>
 
             <div className='title-container'>
-            <h1 className="title">טופס בעיות מחשבים</h1>
-            <img src="/assets/rabin-logo.png" alt="Rabin Logo" className='logo-big'/>
-            <img src="/assets/rabin-logo-small.png" alt="Rabin Logo Small" className='logo-small'/>
+                <h1 className="title">טופס בעיות מחשבים</h1>
+                <img src="/assets/rabin-logo.png" alt="Rabin Logo" className='logo-big' />
+                <img src="/assets/rabin-logo-small.png" alt="Rabin Logo Small" className='logo-small' />
             </div>
 
             <form ref={formRef} onSubmit={handleSubmit} className="support-form">
@@ -93,7 +78,7 @@ export default function Support() {
                 <input type="text" id="name" name="name" placeholder="הזן שם" required aria-label="Name" autoComplete="off" />
 
                 <label htmlFor="priority">דחיפות:</label>
-                <select name="priority" id="priority" aria-required autoComplete="off" required  defaultValue={'DEFAULT'}>   
+                <select name="priority" id="priority" aria-required autoComplete="off" required defaultValue={'DEFAULT'}>
                     <option value="DEFAULT" disabled >אנא בחר את הדחיפות של הבעיה</option>
                     <option value="5">דחוף מאוד</option>
                     <option value="4">דחוף</option>
