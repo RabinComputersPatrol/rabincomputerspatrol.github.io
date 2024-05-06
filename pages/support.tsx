@@ -4,7 +4,8 @@ import formatTime from '@/public/utils';
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { collection, addDoc } from "firebase/firestore";
-import { FirebaseDatabase } from './api/firebase';
+import { getAll } from 'firebase/remote-config';
+import { db } from './api/firebase';
 
 export default function Support() {
     const formRef = useRef<HTMLFormElement>(null);
@@ -18,7 +19,7 @@ export default function Support() {
             console.log({ date, roomNumber, phoneNumber, name, priority, problemDescription });
 
             try {
-                const docRef = await addDoc(collection(FirebaseDatabase.firestore, "reports"), {
+                const docRef = await addDoc(collection(db, "reports"), {
                     date: date,
                     roomNumber: parseInt(roomNumber.toString()),
                     phoneNumber: phoneNumber,
