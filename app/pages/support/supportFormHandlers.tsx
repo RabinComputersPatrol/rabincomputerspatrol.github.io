@@ -17,10 +17,19 @@ export const handleSubmit = async (event: React.FormEvent<HTMLFormElement>, form
         const date = formatDate();
         console.log({ date, roomNumber, phoneNumber, name, priority, problemDescription });
 
-    
+        // Debugging: Log the data being sent to Firestore
+        console.log("Data to be written to Firestore:", {
+            date: date, 
+            roomNumber: parseInt(roomNumber.toString()),
+            phoneNumber: phoneNumber,
+            name: name,
+            priority: parseInt(priority.toString()),
+            problemDescription: problemDescription,   
+            completed: false,        
+        });
 
         try {
-            const docRef = await addDoc(collection(db,"reports"), {
+            const docRef = await addDoc(collection(db,"reports", "1"), {
                 date: date, 
                 roomNumber: parseInt(roomNumber.toString()),
                 phoneNumber: phoneNumber,
@@ -34,10 +43,10 @@ export const handleSubmit = async (event: React.FormEvent<HTMLFormElement>, form
             console.error("Error adding document: ", e);
          }    
 
-
         formRef.current.reset();
     }
 };
+
 
 export const formatPhoneNumber = (event: React.ChangeEvent<HTMLInputElement>) => {
     let inputValue = event.target.value.replace(/\D/g, '').slice(0, 12);
