@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import formatDate from '../../utils';
 import { db } from '../../firebase/connection';
-import { collection, addDoc } from "firebase/firestore";
+import { collection, getDoc, setDoc, doc } from "firebase/firestore";
 
 
 /***
@@ -28,8 +28,20 @@ export const handleSubmit = async (event: React.FormEvent<HTMLFormElement>, form
             completed: false,        
         });
 
+        const docRef = doc(db,"backend data","Main");
+        const docSnap = await getDoc(docRef);
+        var lastID = 0;
+
+
+        if (docSnap.exists()) {
+            console.log("Document data:", docSnap.data());
+            lastID = docSnap.get("last-report-id");
+          } else {
+            console.log("No such document!");
+          }
+
         try {
-            const docRef = await addDoc(collection(db,"reports", "1"), {
+            const docRef = await setDoc(doc(db, "reports", lastID.toString()), {
                 date: date, 
                 roomNumber: parseInt(roomNumber.toString()),
                 phoneNumber: phoneNumber,
@@ -38,7 +50,13 @@ export const handleSubmit = async (event: React.FormEvent<HTMLFormElement>, form
                 problemDescription: problemDescription,
                 completed: false,
             });
-            console.log("Document written with ID: ", docRef.id);
+
+            const backendDoc = await setDoc(doc(db, "backend data", "Main"), {
+                "last-report-id": lastID+1 
+            });
+
+
+            console.log("Document written with ID: ", lastID);
         } catch (e) {
             console.error("Error adding document: ", e);
         }
