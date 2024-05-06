@@ -1,5 +1,5 @@
 :root {
-  --border-color-input: #ccc;
+  --border-color-input: #cccc;
   --border-radius-input: 4px;
   --border-size-input: 2px;
   --max-height: 800px;
@@ -14,19 +14,21 @@
 }
 
 @media only screen and (min-width: 480px) {
-  .logo-small{
+  .logo-small {
     display: none;
   }
-  
+
 }
 
 @media only screen and (max-width: 480px) {
-  .logo-small{
+  .logo-small {
     display: block;
   }
+
   .logo-big {
     display: none;
   }
+
   .support-page {
     max-width: 100%;
     padding: 10px;
@@ -133,8 +135,25 @@ textarea[name="problemDescription"] {
   max-width: auto;
   max-height: auto;
 }
+
 .logo-small {
   z-index: 9999;
   max-width: 60%;
   max-height: auto;
+}
+
+.input-field:not(button) {
+  width: 100vh;
+  display: flex;
+  margin: 0 auto;
+}
+
+.input-field:is(button) {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: var(--border-radius-input);
+  cursor: pointer;
+  transition: transform 0.1s ease;
 }

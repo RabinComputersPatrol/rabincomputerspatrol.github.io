@@ -4,9 +4,9 @@ import { Metadata } from 'next';
 
 
 const open_sans = Open_Sans({
-    weight: "400",
-    display: 'swap',
-    subsets: ['hebrew']
+  weight: "400",
+  display: 'swap',
+  subsets: ['hebrew']
 })
 
 export const metadata: Metadata = {
@@ -23,13 +23,13 @@ export const metadata: Metadata = {
 }
 
 export default function SupportLayout({
-    children,
-  }: {
-    children: React.ReactNode
-  }) {
-    return (
-      <html lang="he" dir="rtl" className={open_sans.className} >  
-        <body>{children}</body>
-      </html>
-    )
-  } 
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  return (
+    <html lang="he" dir="rtl" className={open_sans.className} >
+      <body>{children}</body>
+    </html>
+  )
+} 
