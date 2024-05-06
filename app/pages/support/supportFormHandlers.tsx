@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import formatDate from '../../utils';
 import { db } from '../../firebase/connection';
-import { collection, addDoc } from "firebase/firestore"; 
+import { collection, addDoc } from "firebase/firestore";
 
 
 /***
@@ -13,26 +13,26 @@ export const handleSubmit = async (event: React.FormEvent<HTMLFormElement>, form
     event.preventDefault();
     if (formRef.current) {
         const formData = new FormData(formRef.current);
-        const {roomNumber, phoneNumber, name, priority, problemDescription } = Object.fromEntries(formData.entries());
+        const { roomNumber, phoneNumber, name, priority, problemDescription } = Object.fromEntries(formData.entries());
         const date = formatDate();
         console.log({ date, roomNumber, phoneNumber, name, priority, problemDescription });
 
-    
+
 
         try {
-            const docRef = await addDoc(collection(db,"reports"), {
-                date: date, 
+            const docRef = await addDoc(collection(db, "reports"), {
+                date: date,
                 roomNumber: parseInt(roomNumber.toString()),
                 phoneNumber: phoneNumber,
                 name: name,
                 priority: parseInt(priority.toString()),
-                problemDescription: problemDescription,   
-                completed: false,        
+                problemDescription: problemDescription,
+                completed: false,
             });
             console.log("Document written with ID: ", docRef.id);
-         } catch (e) {
+        } catch (e) {
             console.error("Error adding document: ", e);
-         }    
+        }
 
 
         formRef.current.reset();
