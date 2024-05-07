@@ -19,16 +19,16 @@ export const handleSubmit = async (event: React.FormEvent<HTMLFormElement>, form
 
         // Debugging: Log the data being sent to Firestore
         console.log("Data to be written to Firestore:", {
-            date: date, 
+            date: date,
             roomNumber: parseInt(roomNumber.toString()),
             phoneNumber: phoneNumber,
             name: name,
             priority: parseInt(priority.toString()),
-            problemDescription: problemDescription,   
-            completed: false,        
+            problemDescription: problemDescription,
+            completed: false,
         });
 
-        const docRef = doc(db,"backend data","Main");
+        const docRef = doc(db, "backend data", "Main");
         const docSnap = await getDoc(docRef);
         var lastID = 0;
 
@@ -36,13 +36,13 @@ export const handleSubmit = async (event: React.FormEvent<HTMLFormElement>, form
         if (docSnap.exists()) {
             console.log("Document data:", docSnap.data());
             lastID = docSnap.get("last-report-id");
-          } else {
+        } else {
             console.log("No such document!");
-          }
+        }
 
         try {
             const docRef = await setDoc(doc(db, "reports", lastID.toString()), {
-                date: date, 
+                date: date,
                 roomNumber: parseInt(roomNumber.toString()),
                 phoneNumber: phoneNumber,
                 name: name,
@@ -52,7 +52,7 @@ export const handleSubmit = async (event: React.FormEvent<HTMLFormElement>, form
             });
 
             const backendDoc = await setDoc(doc(db, "backend data", "Main"), {
-                "last-report-id": lastID+1 
+                "last-report-id": lastID + 1
             });
 
 
@@ -70,7 +70,7 @@ export const formatPhoneNumber = (event: React.ChangeEvent<HTMLInputElement>) =>
     let inputValue = event.target.value.replace(/\D/g, '').slice(0, 12);
     inputValue = inputValue.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3');
     event.target.value = inputValue;
-    
+
 };
 
 export const formatRoomNumber = (event: React.ChangeEvent<HTMLInputElement>) => {

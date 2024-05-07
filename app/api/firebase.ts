@@ -3,6 +3,7 @@
 // import { getFirestore } from "firebase/firestore";
 import { initializeApp } from "firebase/app";
 import { getDatabase } from "firebase/database";
+import { app, db } from '../firebase/connection';
 import {
     getFirestore,
     doc,
@@ -14,6 +15,8 @@ import {
     deleteField,
     getDocs,
     addDoc,
+    QuerySnapshot,
+    DocumentData,
 } from "firebase/firestore";
 
 
@@ -27,9 +30,7 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
 const firestore = getFirestore(app);
-const db = getDatabase();
 
 // Write document to Firestore
 export async function writeDoc(collectionName: string, data: any, docId: string = "NONE") {
@@ -57,6 +58,7 @@ export async function addDocument(collectionName: string, data: any) {
 export async function getAllDocuments(collectionName: string) {
     try {
         const querySnapshot = await getDocs(collection(firestore, collectionName));
+        // console.log(querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })));
         return querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
     } catch (error) {
         console.error("Error getting documents: ", error);
