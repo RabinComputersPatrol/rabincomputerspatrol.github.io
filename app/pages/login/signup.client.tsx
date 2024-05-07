@@ -10,6 +10,7 @@ import { app } from '@/app/firebase/connection';
 
 
 
+
 export default function SignupForm() {
     const formRef = useRef<HTMLFormElement>(null);
 
@@ -42,15 +43,15 @@ export const Logout = () => {
         <button onClick={handleLogout}>Logout</button>
     );
   };
-  export function SignupLogin() {
-    const router = useRouter()
+//   export function SignupLogin() {
+//     const router = useRouter();
 
-    return (
-        <div className='login'>
-            <button type="button" onClick={() => router.push('/pages/signup')}>
-             Signup
-            </button>
-        </div>
-      )
+//     return (
+//         <div className='login'>
+//             <button type="button" onClick={() => router.push('/pages/signup')}>
+//              Signup
+//             </button>
+//         </div>
+//       )
 
-}
+// }
