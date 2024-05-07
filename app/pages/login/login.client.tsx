@@ -3,7 +3,7 @@
 import React from 'react';
 import { useRef } from 'react';
 import { useRouter } from 'next/navigation'
-import { formatPhoneNumber, formatRoomNumber, handleSubmit } from './supportFormHandlers';
+import { formatPhoneNumber, formatRoomNumber, handleSubmit } from './loginFormHandlers';
 
 export default function SupportForm() {
     const formRef = useRef<HTMLFormElement>(null);
@@ -42,13 +42,13 @@ export default function SupportForm() {
     );
 }
 
-export function Login() {
+export function Signup() {
     const router = useRouter()
 
     return (
-        <div className='login'>
+        <div className='signup'>
             <button type="button" onClick={() => router.push('/pages/login')}>
-             Login
+             Signup
             </button>
         </div>
       )

@@ -1,6 +1,6 @@
-import SupportPage from './support.server';
-import SupportForm from './support.client';
-import { Login } from './support.client';
+import SupportPage from './signup.server.';
+import SupportForm from './signup.client';
+import { Login } from './signup.client';
 
 export default function Support() {
   return (

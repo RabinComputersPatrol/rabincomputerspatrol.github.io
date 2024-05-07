@@ -4,6 +4,7 @@
 import { initializeApp } from "firebase/app";
 import { getDatabase } from "firebase/database";
 import { app, db } from '../firebase/connection';
+import { getAuth } from "firebase/auth";
 import {
     getFirestore,
     doc,
@@ -31,6 +32,9 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const firestore = getFirestore(app);
+const auth = getAuth(app);
+
+export {auth}
 
 // Write document to Firestore
 export async function writeDoc(collectionName: string, data: any, docId: string = "NONE") {
