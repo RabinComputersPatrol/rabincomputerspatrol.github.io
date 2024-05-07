@@ -29,12 +29,12 @@ jobs:
   # Build job
   build:
     env:
-      FIREBASE_API_KEY: ${{secrets.FIREBASE_API_KEY}}
-      FIREBASE_AUTH_DOMAIN: ${{secrets.FIREBASE_AUTH_DOMAIN}}
-      FIREBASE_PROJECT_ID: ${{secrets.FIREBASE_PROJECT_ID}}
-      FIREBASE_STORAGE_BUCKET: ${{secrets.FIREBASE_STORAGE_BUCKET}}
-      FIREBASE_MESSAGING_SENDER_ID: ${{secrets.FIREBASE_MESSAGING_SENDER_ID}}
-      FIREBASE_APP_ID: ${{secrets.FIREBASE_APP_ID}}
+      NEXT_PUBLIC_API_KEY: ${{secrets.NEXT_PUBLIC_API_KEY}}
+      NEXT_PUBLIC_AUTH_DOMAIN: ${{secrets.NEXT_PUBLIC_AUTH_DOMAIN}}
+      NEXT_PUBLIC_PROJECT_ID: ${{secrets.NEXT_PUBLIC_PROJECT_ID}}
+      NEXT_PUBLIC_STORAGE_BUCKET: ${{secrets.NEXT_PUBLIC_STORAGE_BUCKET}}
+      NEXT_PUBLIC_MESSAGING_SENDER_ID: ${{secrets.NEXT_PUBLIC_MESSAGING_SENDER_ID}}
+      NEXT_PUBLIC_APP_ID: ${{secrets.NEXT_PUBLIC_APP_ID}}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -84,14 +84,7 @@ jobs:
       - name: Build with Next.js
         run: ${{ steps.detect-package-manager.outputs.runner }} next build
       - name: Set & Print environment variables
-        run: |
-         echo "FIREBASE_API_KEY: ${{secrets.FIREBASE_API_KEY}}" >> .env.local
-         echo "FIREBASE_AUTH_DOMAIN: ${{secrets.FIREBASE_AUTH_DOMAIN}}
-         echo "FIREBASE_PROJECT_ID: ${{secrets.FIREBASE_PROJECT_ID}}
-         echo "FIREBASE_STORAGE_BUCKET: ${{secrets.FIREBASE_STORAGE_BUCKET}}
-         echo "FIREBASE_MESSAGING_SENDER_ID: ${{secrets.FIREBASE_MESSAGING_SENDER_ID}}
-         echo "FIREBASE_APP_ID: ${{secrets.FIREBASE_APP_ID}}"
-         
+        run: |         
          echo "API Key: $NEXT_PUBLIC_API_KEY"
          echo "Auth Domain: $NEXT_PUBLIC_AUTH_DOMAIN"
          echo "Project ID: $NEXT_PUBLIC_PROJECT_ID"
