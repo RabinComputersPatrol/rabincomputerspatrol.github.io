@@ -3,6 +3,9 @@
 import React from 'react';
 import { useRef } from 'react';
 import { handleSubmit } from './signupFormHandlers';
+import { auth } from '@/app/api/firebase';
+import { signOut } from 'firebase/auth';
+
 
 export default function SignupForm() {
     const formRef = useRef<HTMLFormElement>(null);
@@ -21,4 +24,18 @@ export default function SignupForm() {
         </form>
     );
 }
-
+export const Logout = () => {
+    const handleLogout = async () => {
+        try {
+            await signOut(auth);
+            console.log('User signed out');
+            // Optionally, redirect the user or perform other actions after logout
+        } catch (error) {
+            console.error('Error signing out:', error);
+        }
+    };
+  
+    return (
+        <button onClick={handleLogout}>Logout</button>
+    );
+  };

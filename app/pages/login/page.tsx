@@ -1,12 +1,12 @@
-import SupportPage from './login.server';
-import SupportForm from './login.client';
-import { Signup } from './login.client';
+import SupportPage from './signup.server.';
+import SignupForm from './signup.client';
+import { Logout } from './signup.client';
 
 export default function Support() {
   return (
     <div>
-      <SupportPage />
-      <SupportForm />
+      <SignupForm />
+      <Logout/>
       <footer className="footer">
         © 2024 נועם ולט. כל הזכויות שמורות.
       </footer>
