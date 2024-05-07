@@ -4,11 +4,10 @@
   --border-size-input: 2px;
   --max-height: 800px;
   --max-width: 800px;
-
 }
 
 .support-page {
-  max-width: 800px;
+  max-width: 100%;
   margin: 0 auto;
   padding: 10px;
 }
@@ -17,7 +16,6 @@
   .logo-small {
     display: none;
   }
-
 }
 
 @media only screen and (max-width: 480px) {
@@ -27,11 +25,6 @@
 
   .logo-big {
     display: none;
-  }
-
-  .support-page {
-    max-width: 100%;
-    padding: 10px;
   }
 
   .title {
@@ -48,15 +41,19 @@
 
   .support-form input,
   .support-form textarea {
-    font-size: 1var(--border-radius-input);
+    font-size: 14px;
   }
 
   textarea[name="problemDescription"] {
     max-height: 100px;
+    height: auto;
+
   }
 
   .support-form button {
-    padding: 8px 16px;
+    padding: 10px 20px;
+    font-size: 14px;
+
   }
 
   .footer {
@@ -64,9 +61,8 @@
   }
 }
 
-
 .title {
-  font-size: 2var(--border-radius-input);
+  font-size: 20px;
   font-weight: bold;
   color: #333;
   margin-bottom: 20px;
@@ -84,7 +80,9 @@
 }
 
 .support-form input,
-.support-form textarea {
+.support-form textarea,
+.support-form select {
+  width: 100%;
   padding: 10px;
   border: var(--border-size-input) solid var(--border-color-input);
   border-radius: var(--border-radius-input);
@@ -103,57 +101,10 @@
 .support-form button:hover {
   background-color: #0056b3;
   transform: scale(1.05);
-  /* height: 105%; */
-}
-
-textarea[name="problemDescription"] {
-  height: 325px;
 }
 
 .footer {
   margin-top: 10px;
   text-align: center;
   color: #666;
-}
-
-.support-form select[name="priority"] {
-  padding: 15px;
-  border: var(--border-size-input) solid var(--border-color-input);
-  border-radius: var(--border-radius-input);
-  width: 100%;
-  height: 70%;
-  font-size: 85%;
-}
-
-.title-container {
-  display: flex;
-  justify-content: space-between;
-}
-
-.logo-big {
-  z-index: 9999;
-  max-width: auto;
-  max-height: auto;
-}
-
-.logo-small {
-  z-index: 9999;
-  max-width: 60%;
-  max-height: auto;
-}
-
-.input-field:not(button) {
-  width: 100vh;
-  display: flex;
-  margin: 0 auto;
-}
-
-.input-field:is(button) {
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: var(--border-radius-input);
-  cursor: pointer;
-  transition: transform 0.1s ease;
 }
