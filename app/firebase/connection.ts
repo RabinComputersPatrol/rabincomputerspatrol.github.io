@@ -1,5 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
+import { getDoc, doc } from "firebase/firestore";
+
 
 const firebaseConfig = {
     apiKey: process.env.NEXT_PUBLIC_API_KEY,
@@ -12,6 +14,9 @@ const firebaseConfig = {
 
 try {
     const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app)
+    const docRef = doc(db,"backend data","Main");
+    const docSnap = getDoc(docRef);
     console.log("Logged in correctly to firebase! ", );
 } catch (e) {
     console.error("Error while logging in: ", e);
