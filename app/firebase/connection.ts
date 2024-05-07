@@ -14,7 +14,7 @@ const firebaseConfig = {
 
 try {
     console.log(firebaseConfig)
-    console.log("Logged in correctly to firebase! ", );
+    console.log("Logged in correctly to firebase! ",);
 } catch (e) {
     console.error("Error while logging in: ", e);
 }
@@ -22,4 +22,4 @@ try {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app)
 
-export {app,db};
+export { app, db };
