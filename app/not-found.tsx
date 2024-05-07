@@ -1,8 +1,12 @@
-"use server"
+import { useEffect } from 'react';
+import { useRouter } from 'next/router';
 
-import {redirect} from 'next/navigation';
+export default function NotFound() {
+ const router = useRouter();
 
-export default async function ERROR() {
-    redirect("/pages/support")
+ useEffect(() => {
+    router.push('/pages/support');
+ }, []);
+
+ return <div>Redirecting...</div>;
 }
-
