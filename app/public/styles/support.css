@@ -82,7 +82,7 @@
 .support-form input,
 .support-form textarea,
 .support-form select {
-  width: 100%;
+  width: 90%;
   padding: 10px;
   border: var(--border-size-input) solid var(--border-color-input);
   border-radius: var(--border-radius-input);
