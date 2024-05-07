@@ -1,0 +1,38 @@
+.dash table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-family: Arial, sans-serif;
+    margin-top: 400px;
+    position: static;
+    bottom: 0; 
+}
+
+
+.dash table thead {
+    background-color: #007bff;
+    color: white;
+}
+
+.dash table thead th {
+    padding: 10px;
+    text-align: left;
+}
+
+.dash table tbody tr {
+    border-bottom: 1px solid #ddd;
+}
+
+.dash table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.dash table tbody td {
+    padding: 10px;
+    text-align: left;
+    border-style: ridge;
+}
+
+.dash table tbody tr:hover {
+    background-color: #ddd;
+}
