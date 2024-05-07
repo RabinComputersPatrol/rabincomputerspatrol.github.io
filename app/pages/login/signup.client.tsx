@@ -6,6 +6,7 @@ import { handleSubmit } from './signupFormHandlers';
 import { auth } from '@/app/api/firebase';
 import { getAuth, signOut } from 'firebase/auth';
 import { useRouter } from 'next/router';
+import { app } from '@/app/firebase/connection';
 
 
 
@@ -29,7 +30,7 @@ export default function SignupForm() {
 export const Logout = () => {
     const handleLogout = async () => {
         try {
-            await signOut(getAuth());
+            await signOut(getAuth(app));
             console.log('User signed out');
             // Optionally, redirect the user or perform other actions after logout
         } catch (error) {
@@ -41,7 +42,7 @@ export const Logout = () => {
         <button onClick={handleLogout}>Logout</button>
     );
   };
-  export function Signup() {
+  export function SignupLogin() {
     const router = useRouter()
 
     return (
