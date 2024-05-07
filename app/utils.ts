@@ -5,7 +5,7 @@ export default function formatDate() {
     const yyyy = today.getFullYear();
    
     return `${dd}/${mm}/${yyyy}`;
-   };
+};
    
-   const today = formatDate();
-   console.log(today);
+const today = formatDate();
+console.log(today);
