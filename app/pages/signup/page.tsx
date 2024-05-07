@@ -1,6 +1,5 @@
 import SupportPage from './signup.server.';
 import SupportForm from './signup.client';
-import { Login } from './signup.client';
 
 export default function Support() {
   return (
@@ -9,7 +8,6 @@ export default function Support() {
       <SupportForm />
       <footer className="footer">
         © 2024 נועם ולט. כל הזכויות שמורות.
-        <Login/>
       </footer>
     </div>
   );
