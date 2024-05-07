@@ -13,10 +13,7 @@ const firebaseConfig = {
 };
 
 try {
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app)
-    const docRef = doc(db,"backend data","Main");
-    const docSnap = getDoc(docRef);
+    console.log(firebaseConfig)
     console.log("Logged in correctly to firebase! ", );
 } catch (e) {
     console.error("Error while logging in: ", e);
