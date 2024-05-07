@@ -12,6 +12,7 @@ interface IRowData {
     roomNumber: number;
     date: string;
     phoneNumber: string;
+    completed: boolean;
 }
 
 export default function DashboardPage() {
@@ -39,7 +40,7 @@ export default function DashboardPage() {
                     roomNumber: item.roomNumber || 0,
                     date: item.date || "",
                     phoneNumber: item.phoneNumber || "",
-                    completed: item.completed || "",
+                    completed: item.completed || "" || false
                 }));
                 formattedData.sort((n1, n2) => {
                     return parseInt(n1.id) - parseInt(n2.date);
@@ -66,6 +67,7 @@ export default function DashboardPage() {
                             <td>{rowData.roomNumber}</td>
                             <td>{rowData.date}</td>
                             <td>{rowData.phoneNumber}</td>
+                            <td>{rowData.completed}</td>
                         </tr>
                     ))}
                 </tbody>
