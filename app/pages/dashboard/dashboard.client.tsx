@@ -28,6 +28,7 @@ export default function DashboardPage() {
                     roomNumber?: number;
                     date?: string;
                     phoneNumber?: string;
+                    completed?: boolean;
                 }[] = await getAllDocuments("reports");
 
                 const formattedData: IRowData[] = rawData.map(item => ({
@@ -37,7 +38,8 @@ export default function DashboardPage() {
                     name: item.name || "",
                     roomNumber: item.roomNumber || 0,
                     date: item.date || "",
-                    phoneNumber: item.phoneNumber || ""
+                    phoneNumber: item.phoneNumber || "",
+                    completed: item.completed || "",
                 }));
                 formattedData.sort((n1, n2) => {
                     return parseInt(n1.id) - parseInt(n2.date);
