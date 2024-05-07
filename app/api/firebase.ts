@@ -18,12 +18,12 @@ import {
 
 
 const firebaseConfig = {
-    apiKey: "AIzaSyBD5wyW9A1cTpErpWeS_5d_pHe3DufjXpY",
-    authDomain: "computerpatrol-5c961.firebaseapp.com",
-    projectId: "computerpatrol-5c961",
-    storageBucket: "computerpatrol-5c961.appspot.com",
-    messagingSenderId: "458287013012",
-    appId: "1:458287013012:web:1c5550b31f5449c4a72881"
+    apiKey: process.env.NEXT_PUBLIC_API_KEY,
+    authDomain: process.env.NEXT_PUBLIC_AUTH_DOMAIN,
+    projectId: process.env.NEXT_PUBLIC_PROJECT_ID,
+    storageBucket: process.env.NEXT_PUBLIC_STORAGE_BUCKET,
+    messagingSenderId: process.env.NEXT_PUBLIC_MESSAGING_SENDER_ID,
+    appId: process.env.NEXT_PUBLIC_APP_ID
 };
 
 // Initialize Firebase
