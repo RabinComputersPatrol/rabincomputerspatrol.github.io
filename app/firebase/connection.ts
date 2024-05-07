@@ -1,6 +1,5 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
-import { getAuth } from "firebase/auth"; // Import the auth module
 
 const firebaseConfig = {
     apiKey: process.env.NEXT_PUBLIC_API_KEY,
@@ -11,26 +10,14 @@ const firebaseConfig = {
     appId: process.env.NEXT_PUBLIC_APP_ID
 };
 
-let app;
-let db;
-let auth;
-
 try {
-    app = initializeApp(firebaseConfig);
-    db = getFirestore(app);
-    auth = getAuth(app); // Initialize Firebase Auth
-    console.log("Logged in correctly to firebase!");
+    const app = initializeApp(firebaseConfig);
+    console.log("Logged in correctly to firebase! ", );
 } catch (e) {
     console.error("Error while logging in: ", e);
 }
 
-// Check if the user is logged in
-auth.onAuthStateChanged((user) => {
-    if (user) {
-        console.log("User is logged in: ", user);
-    } else {
-        console.log("No user is logged in.");
-    }
-});
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app)
 
-export { app, db, auth }; // Export the app, db, and auth instances
+export {app,db};
