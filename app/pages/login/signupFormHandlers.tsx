@@ -1,6 +1,5 @@
 import React from 'react';
-import { signInWithEmailAndPassword, signOut } from "firebase/auth";
-import { auth } from '@/app/api/firebase';
+import { signInWithEmailAndPassword, signOut,getAuth } from "firebase/auth";
 
 export const handleSubmit = async (event: React.FormEvent<HTMLFormElement>, formRef: React.RefObject<HTMLFormElement>) => {
   event.preventDefault();
@@ -10,6 +9,7 @@ export const handleSubmit = async (event: React.FormEvent<HTMLFormElement>, form
     const email = formData.get('email') as string;
     const password = formData.get('password') as string;
     console.log({ email, password });
+    const auth = getAuth();
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed in 
