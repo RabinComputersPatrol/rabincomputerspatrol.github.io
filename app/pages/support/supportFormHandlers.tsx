@@ -70,6 +70,7 @@ export const formatPhoneNumber = (event: React.ChangeEvent<HTMLInputElement>) =>
     let inputValue = event.target.value.replace(/\D/g, '').slice(0, 12);
     inputValue = inputValue.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3');
     event.target.value = inputValue;
+    
 };
 
 export const formatRoomNumber = (event: React.ChangeEvent<HTMLInputElement>) => {
