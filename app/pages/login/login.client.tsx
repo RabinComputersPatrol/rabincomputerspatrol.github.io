@@ -12,7 +12,7 @@ export default function LoginForm() {
 
     return (
         <form ref={formRef} onSubmit={(event) => handleSubmit(event, formRef)} className="signup-form">
-            <label htmlFor="email" className='input-field' dir="ltr">דוא"ל</label>
+            <label htmlFor="email" className='input-field' dir="ltr">email</label>
             <input type="email" id="email" name="email" placeholder="Joe125@cooljoe.com" required
                 autoComplete="off" className='input-field' />
 
