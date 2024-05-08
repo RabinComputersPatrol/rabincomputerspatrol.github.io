@@ -46,6 +46,7 @@ export const handleSubmit = async (event: React.FormEvent<HTMLFormElement>, form
                 // Signed up 
                 const user = userCredential.user;
                 addUser("users",{
+                    name: baseName,
                     email: email,
                     password: password
                 },username)
