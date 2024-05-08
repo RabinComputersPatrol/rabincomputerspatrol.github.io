@@ -1,6 +1,7 @@
 import { Open_Sans } from 'next/font/google';
 import '../../public/styles/support.css';
 import { Metadata } from 'next';
+import LoginAuthListener from '@/app/firebase/listeners';
 
 
 const open_sans = Open_Sans({
@@ -28,8 +29,10 @@ export default function SupportLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="he" dir="rtl" className={open_sans.className} >
-      <body>{children}</body>
+    <html lang="he" dir="rtl" className={open_sans.className} suppressHydrationWarning>
+      <body>{children}
+      <LoginAuthListener/>
+      </body>
     </html>
   )
 } 

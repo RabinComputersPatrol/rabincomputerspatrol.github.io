@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { getAllDocuments } from "@/app/api/firebase";
+import { Logout } from "../login/login.client";
 
 interface IRowData {
     id: string;
@@ -159,6 +160,9 @@ export default function DashboardPage() {
     return (
         <div className="dash">
             <div className="center container">
+                <div>
+                    <Logout/>
+                </div>
                 <div>
                     <label>
                         <input

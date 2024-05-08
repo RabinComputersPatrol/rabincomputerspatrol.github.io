@@ -46,6 +46,16 @@ export async function writeDoc(collectionName: string, data: any, docId: string 
     }
 }
 
+// Store a user in database
+export async function addUser(collectionName: string, data: any, docId: string = "NONE") {
+    try {
+        await setDoc(doc(firestore, collectionName, docId), data);
+        console.log("Document successfully written!");
+    } catch (error) {
+        console.error("Error writing document: ", error);
+    }
+}
+
 // Add document to Firestore collection
 export async function addDocument(collectionName: string, data: any) {
     try {

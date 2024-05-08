@@ -2,7 +2,6 @@ import { Open_Sans } from 'next/font/google';
 import '../../public/styles/support.css';
 import { Metadata } from 'next';
 
-
 const open_sans = Open_Sans({
   weight: "400",
   display: 'swap',
@@ -22,13 +21,13 @@ export const metadata: Metadata = {
   }
 }
 
-export default function SupportLayout({
+export default async function SupportLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
   return (
-    <html lang="he" dir="rtl" className={open_sans.className} >
+    <html lang="he" dir="rtl" className={open_sans.className} suppressHydrationWarning>
       <body>{children}</body>
     </html>
   )
