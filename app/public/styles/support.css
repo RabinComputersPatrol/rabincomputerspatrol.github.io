@@ -1,68 +1,63 @@
-:root {
-  --border-color-input: #cccc;
-  --border-radius-input: 4px;
-  --border-size-input: 2px;
-  --max-height: 800px;
-  --max-width: 800px;
-}
 
 .support-page {
-  max-width: 100%;
+  max-width: 800px;
+  max-height: 800px;
   margin: 0 auto;
-  padding: 10px;
+  padding: 20px;
 }
 
 @media only screen and (min-width: 480px) {
-  .logo-small {
+  .logo-small{
     display: none;
   }
+  
 }
 
 @media only screen and (max-width: 480px) {
-  .logo-small {
+  .logo-small{
     display: block;
   }
-
   .logo-big {
     display: none;
   }
-
+  .support-page {
+     max-width: 100%;
+     padding: 10px; 
+   }
+ 
   .title {
-    font-size: 18px;
-  }
-
+     font-size: 18px; 
+   }
+ 
   .support-form {
-    flex-direction: column-reverse;
-  }
-
+     flex-direction: column-reverse; 
+   }
+ 
   .support-form label {
-    font-size: 14px;
-  }
-
+     font-size: 14px;
+   }
+ 
   .support-form input,
   .support-form textarea {
-    font-size: 14px;
-  }
-
-  textarea[name="problemDescription"] {
+     font-size: 14px;
+   }
+ 
+   textarea[name="problemDescription"] {
     max-height: 100px;
-    height: auto;
-
-  }
+   }
 
   .support-form button {
-    padding: 10px 20px;
-    font-size: 14px;
-
-  }
-
+     padding: 8px 16px; 
+   }
+ 
   .footer {
-    font-size: 12px;
-  }
-}
+     font-size: 12px; 
+   }
+ }
+
 
 .title {
-  font-size: 20px;
+  font-size: 24px;
   font-weight: bold;
   color: #333;
   margin-bottom: 20px;
@@ -72,6 +67,8 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+  margin: auto;
+  max-width: 800px;
 }
 
 .support-form label {
@@ -80,12 +77,10 @@
 }
 
 .support-form input,
-.support-form textarea,
-.support-form select {
-  width: 90%;
+.support-form textarea {
   padding: 10px;
-  border: var(--border-size-input) solid var(--border-color-input);
-  border-radius: var(--border-radius-input);
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
 .support-form button {
@@ -93,18 +88,72 @@
   background-color: #007bff;
   color: white;
   border: none;
-  border-radius: var(--border-radius-input);
+  border-radius: 4px;
   cursor: pointer;
-  transition: transform 0.1s ease;
 }
 
 .support-form button:hover {
   background-color: #0056b3;
-  transform: scale(1.05);
+}
+
+textarea[name="problemDescription"] {
+  height: 325px;
+  
 }
 
 .footer {
-  margin-top: 10px;
+  margin-top: 20px;
   text-align: center;
   color: #666;
+}
+
+.support-form select[name="priority"] {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+  font-size: 95%;
+}
+
+.big-title-container {
+  position: relative;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center; /* Vertically align items */
+  flex-direction: column;
+}
+
+.title-container {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Vertically align items */
+}
+
+.login,
+.home {
+  position: absolute;
+  justify-content: space-evenly;
+  margin-left: 50px;
+  top: 50%; /* Adjust vertically as needed */
+  transform: translateY(-50%);
+}
+
+.logo-big,
+.logo-small {
+  z-index: 9999;
+}
+
+@media only screen and (max-width: 480px) {
+  .big-title-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .login,
+  .home {
+    position: static; /* Reset position */
+    margin-top: 10px; /* Add space between title and buttons */
+    transform: none; /* Reset transform */
+  }
 }

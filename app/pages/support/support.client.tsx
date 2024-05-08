@@ -54,3 +54,16 @@ export function Login() {
       )
 
 }
+
+export function HomeButton() {
+    const router = useRouter()
+
+    return (
+        <div className='home'>
+            <button type="button" onClick={() => router.push('/pages/login')}>
+             Home
+            </button>
+        </div>
+      )
+
+}

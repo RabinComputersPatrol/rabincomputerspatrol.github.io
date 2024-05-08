@@ -1,6 +1,5 @@
 import SupportPage from './support.server';
 import SupportForm from './support.client';
-import { Login } from './support.client';
 
 export default function Support() {
   return (
@@ -9,7 +8,6 @@ export default function Support() {
       <SupportForm />
       <footer className="footer">
         © 2024 נועם ולט. כל הזכויות שמורות.
-        <Login/>
       </footer>
     </div>
   );
