@@ -1,4 +1,4 @@
-import SupportPage from './signup.server.';
+
 import SignupForm from './signup.client';
 import { Logout } from './signup.client';
 import { SignupLogin } from './signup.client';
