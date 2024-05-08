@@ -18,7 +18,7 @@ export default function LoginForm() {
 
             <label htmlFor="password" dir="ltr">:סיסמה</label>
             <input type="password" id="password" name="password" placeholder="JoeTheKing125" dir="ltr"
-                required autoComplete="off" className='input-field' />
+                required autoComplete="off" className='input-field' minLength={6} />
 
             <button type="submit" className='input-field'>אישור</button>
         </form>
