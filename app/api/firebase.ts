@@ -68,17 +68,33 @@ export async function addDocument(collectionName: string, data: any) {
     }
 }
 
-// Get all documents from a collection
+// Get all documents from a collection with caching
 export async function getAllDocuments(collectionName: string) {
+    const cacheKey = `documents_${collectionName}`;
+    const cacheExpiryKey = `${cacheKey}_expiry`;
+
+    const cachedData = localStorage.getItem(cacheKey);
+    const cachedExpiry = localStorage.getItem(cacheExpiryKey);
+
+    if (cachedData && cachedExpiry && Date.now() < Number(cachedExpiry)) {
+        return JSON.parse(cachedData);
+    }
+
     try {
         const querySnapshot = await getDocs(collection(firestore, collectionName));
-        // console.log(querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })));
-        return querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        const documents = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+
+        localStorage.setItem(cacheKey, JSON.stringify(documents));
+
+        localStorage.setItem(cacheExpiryKey, (Date.now() + 60000).toString()); // 1 Minute update
+
+        return documents;
     } catch (error) {
         console.error("Error getting documents: ", error);
         return [];
     }
 }
+
 
 // Delete a document from Firestore
 export async function deleteDocument(collectionName: string, docId: string) {

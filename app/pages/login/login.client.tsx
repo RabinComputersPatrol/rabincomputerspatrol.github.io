@@ -11,12 +11,12 @@ export default function LoginForm() {
     const formRef = useRef<HTMLFormElement>(null);
 
     return (
-        <form ref={formRef} onSubmit={(event) => handleSubmit(event, formRef)} className="signup-form">
-            <label htmlFor="email" className='input-field' dir="ltr">email</label>
-            <input type="email" id="email" name="email" placeholder="Joe125@cooljoe.com" required
+        <form ref={formRef} onSubmit={(event) => handleSubmit(event, formRef)} className="login-form">
+            <label htmlFor="name" className='input-field' dir="ltr">:שם</label>
+            <input type="text" id="name" name="name" placeholder="Joe125@cooljoe.com" required
                 autoComplete="off" className='input-field' />
 
-            <label htmlFor="password" dir="ltr">סיסמה</label>
+            <label htmlFor="password" dir="ltr">:סיסמה</label>
             <input type="password" id="password" name="password" placeholder="JoeTheKing125" dir="ltr"
                 required autoComplete="off" className='input-field' />
 

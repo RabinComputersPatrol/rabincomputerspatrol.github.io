@@ -4,16 +4,41 @@ import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { auth, getAllDocuments } from '../api/firebase';
 import { useRouter,usePathname } from 'next/navigation';
 
+
+const fetchData = async () => {
+  const cachedData = localStorage.getItem('authorizedMembers');
+  const cachedExpiry = localStorage.getItem('authorizedMembersExpiry');
+ 
+  if (cachedData && cachedExpiry && Date.now() < Number(cachedExpiry)) {
+     return JSON.parse(cachedData);
+  }
+ 
+  const authorized = await getAllDocuments('members');
+  localStorage.setItem('authorizedMembers', JSON.stringify(authorized)); 
+  localStorage.setItem('authorizedMembersExpiry', (Date.now() + 60000).toString()); // 1 minute
+  return authorized;
+};
+ 
+
 const LoginAuthListener = () => {
   const router = useRouter();
   const pathname = usePathname();
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user) {
-        router.push('/pages/dashboard');
+        const members = await fetchData();
+        const email = user.email
+        for (const member of members) {
+          const memberEmail = member.id;
+          if (email == memberEmail) {
+            router.replace('/pages/dashboard');
+            return;
+          }
+        }
+        router.replace("/pages/support");
+        signOut(auth);
       } else {
-        router.push('/pages/login');
       }
     });
 
@@ -45,11 +70,6 @@ export const DashboardAuthListener = () => {
   const pathname = usePathname();
 
   useEffect(() => {
-    const fetchData = async () => {
-      const authorized = await getAllDocuments('members');
-      return authorized;
-    }
-
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user) {
         const members = await fetchData();
