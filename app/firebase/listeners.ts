@@ -73,16 +73,29 @@ export const DashboardAuthListener = () => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user) {
         const members = await fetchData();
-          const email = user.email
+        const email = user.email;
+        let isMember = false;
         for (const member of members) {
           const memberEmail = member.id;
-          if (email == memberEmail) {
+          if (email === memberEmail) {
+            isMember = true;
+            break;
+          }
+        }
+        if (isMember) {
+          // Check if the current pathname contains '/dashboard'
+          if (pathname.includes('/dashboard')) {
+            // Allow access to nested dashboard pages
+            return;
+          } else {
+            // Redirect to dashboard if logged in but not on a nested dashboard page
             router.replace('/pages/dashboard');
             return;
           }
+        } else {
+          router.replace('/pages/login');
+          await signOut(auth);
         }
-        router.replace('/pages/login')
-        await signOut(auth);
       } else {
         router.replace('/pages/support'); 
       }
@@ -91,9 +104,10 @@ export const DashboardAuthListener = () => {
     return () => {
       unsubscribe();
     };
-  }, [router]);
+  }, [router, pathname]);
 
   return null;
 };
+
 
 

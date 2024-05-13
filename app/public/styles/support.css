@@ -130,15 +130,6 @@ textarea[name="problemDescription"] {
   align-items: center; /* Vertically align items */
 }
 
-.login,
-.home {
-  position: absolute;
-  justify-content: space-evenly;
-  margin-left: 50px;
-  top: 50%; /* Adjust vertically as needed */
-  transform: translateY(-50%);
-}
-
 .logo-big,
 .logo-small {
   z-index: 9999;
@@ -148,12 +139,5 @@ textarea[name="problemDescription"] {
   .big-title-container {
     flex-direction: column;
     align-items: flex-start;
-  }
-  
-  .login,
-  .home {
-    position: static; /* Reset position */
-    margin-top: 10px; /* Add space between title and buttons */
-    transform: none; /* Reset transform */
   }
 }
