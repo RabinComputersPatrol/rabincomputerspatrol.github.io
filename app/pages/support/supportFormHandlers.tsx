@@ -48,7 +48,7 @@ export const handleSubmit = async (event: React.FormEvent<HTMLFormElement>, form
                 name: name,
                 priority: parseInt(priority.toString()),
                 problemDescription: problemDescription,
-                completed: false,
+                fixed: 1,
             });
 
             const backendDoc = await setDoc(doc(db, "backend data", "Main"), {

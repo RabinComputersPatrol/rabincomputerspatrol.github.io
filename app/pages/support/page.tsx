@@ -1,12 +1,16 @@
+"use client"
+
 import SupportPage from './support.server';
 import SupportForm from './support.client';
+import { useRouter } from 'next/navigation';
 
 export default function Support() {
-  return (
-    <div>
+  const router = useRouter()
+  return (    
+    <div className="container">
       <SupportPage />
       <SupportForm />
-      <footer className="footer">
+      <footer className="footer" onClick={() => router.push('/pages/login')}>
         © 2024 נועם ולט. כל הזכויות שמורות.
       </footer>
     </div>

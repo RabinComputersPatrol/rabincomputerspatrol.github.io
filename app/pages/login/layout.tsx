@@ -1,5 +1,5 @@
 import { Open_Sans } from 'next/font/google';
-import '../../public/styles/support.css';
+import '../../public/styles/login.css';
 import { Metadata } from 'next';
 import LoginAuthListener from '@/app/firebase/listeners';
 
@@ -11,10 +11,10 @@ const open_sans = Open_Sans({
 })
 
 export const metadata: Metadata = {
-  title: 'טופס בעיות מחשבים',
+  title: 'התחברות',
   openGraph: {
-    title: 'טופס בעיות מחשבים',
-    siteName: "טופס בעיות מחשבים",
+    title: 'התחברות',
+    siteName: "התחברות",
     description: "טופס למילוי לבקשת עזרה בנוגע בעיות מחשבים",
     url: "https://rabincomputerspatrol.github.io/pages/support",
     images: "https://raw.githubusercontent.com/RabinComputersPatrol/rabincomputerspatrol.github.io/main/app/public/assets/rabin-logo-small.png",

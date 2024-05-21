@@ -12,7 +12,7 @@ interface IRowData {
     roomNumber: number;
     date: string;
     phoneNumber: string;
-    completed: boolean;
+    fixed: number; // Changed from boolean to accept 4 possible values
 }
 
 export default function DashboardPage() {
@@ -31,22 +31,24 @@ export default function DashboardPage() {
                     roomNumber?: number;
                     date?: string;
                     phoneNumber?: string;
-                    completed?: boolean;
+                    fixed?: number; // Changed from boolean to accept 4 possible values
                 }[] = await getAllDocuments("dummy");
 
                 const formattedData: IRowData[] = rawData.map(item => ({
-                    id: item.id || "", // Assuming id is always present
+                    id: item.id || "",
                     priority: item.priority || 0,
                     problemDescription: item.problemDescription || "",
                     name: item.name || "",
                     roomNumber: item.roomNumber || 0,
                     date: item.date || "",
                     phoneNumber: item.phoneNumber || "",
-                    completed: item.completed || false
+                    fixed: item.fixed || -1 // Set default value to -1
                 }));
+
                 formattedData.sort((n1, n2) => {
                     return parseInt(n1.id) - parseInt(n2.date);
                 });
+
                 setTableData(formattedData);
             } catch (error) {
                 console.error("Error getting documents: ", error);
@@ -58,7 +60,7 @@ export default function DashboardPage() {
 
     const [sortConfig, setSortConfig] = useState({
         keys: [
-            { key: 'completed', direction: 'ascending' },
+            { key: 'fixed', direction: 'ascending' }, // Changed from 'completed' to 'fixed'
             { key: 'priority', direction: 'descending' },
             { key: 'date', direction: 'descending' },
             { key: 'id', direction: 'descending' },
@@ -77,7 +79,7 @@ export default function DashboardPage() {
 
     function sortData(data: IRowData[]): IRowData[] {
         const defaultSortConfig = [
-            { key: 'completed', direction: 'ascending' },
+            { key: 'fixed', direction: 'ascending' },
             { key: 'priority', direction: 'descending' },
             { key: 'date', direction: 'descending' },
             { key: 'id', direction: 'descending' },
@@ -111,7 +113,7 @@ export default function DashboardPage() {
     }
 
     const sortedTableData = sortData(tableData).filter(rowData => {
-        if (hideCompleted && rowData.completed) return false;
+        if (hideCompleted && rowData.fixed !== -1) return false; // Check for -1 value
         if (showHighPriority && rowData.priority < 5) return false;
         return true;
     });
@@ -134,8 +136,8 @@ export default function DashboardPage() {
                             Date {sortConfig.keys.find(k => k.key === 'date')?.direction === 'ascending' ? '▼' : '▲'}
                         </th>
                         <th> Phone Number </th>
-                        <th onClick={() => updateSortConfig('completed', sortConfig.keys.find(k => k.key === 'completed')?.direction === 'ascending' ? 'descending' : 'ascending')}>
-                            Completed {sortConfig.keys.find(k => k.key === 'completed')?.direction === 'ascending' ? '▼' : '▲'}
+                        <th onClick={() => updateSortConfig('fixed', sortConfig.keys.find(k => k.key === 'fixed')?.direction === 'ascending' ? 'descending' : 'ascending')}>
+                            Fixed {sortConfig.keys.find(k => k.key === 'fixed')?.direction === 'ascending' ? '▼' : '▲'}
                         </th>
                     </tr>
                 </thead>
@@ -149,7 +151,7 @@ export default function DashboardPage() {
                             <td>{rowData.roomNumber}</td>
                             <td>{rowData.date}</td>
                             <td>{rowData.phoneNumber}</td>
-                            <td>{rowData.completed ? "Yes" : "No"}</td>
+                            <td>{rowData.fixed === -1 ? "Not Fixed" : rowData.fixed === 1 ? "Fixed 1" : rowData.fixed === 2 ? "Fixed 2" : "Fixed 3"}</td>
                         </tr>
                     ))}
                 </tbody>
@@ -188,5 +190,3 @@ export default function DashboardPage() {
         </div>
     );
 }
-
-

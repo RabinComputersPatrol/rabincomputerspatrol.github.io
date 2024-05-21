@@ -12,15 +12,15 @@ export default function LoginForm() {
 
     return (
         <form ref={formRef} onSubmit={(event) => handleSubmit(event, formRef)} className="login-form">
-            <label htmlFor="name" className='input-field' dir="ltr">:שם</label>
+            <label htmlFor="name" className='name' dir="rtl">שם:</label>
             <input type="text" id="name" name="name" placeholder="Joe125@cooljoe.com" required
-                autoComplete="off" className='input-field' />
+                autoComplete="off" className='input-field' dir="rtl"/>
 
-            <label htmlFor="password" dir="ltr">:סיסמה</label>
-            <input type="password" id="password" name="password" placeholder="JoeTheKing125" dir="ltr"
+            <label htmlFor="password" dir="rtl">סיסמה:</label>
+            <input type="password" id="password" name="password" placeholder="JoeTheKing125" dir="rtl"
                 required autoComplete="off" className='input-field' minLength={6} />
 
-            <button type="submit" className='input-field'>אישור</button>
+            <button type="submit" className='submit'>אישור</button>
         </form>
     );
 }
@@ -39,6 +39,6 @@ export const Logout = () => {
     };
   
     return (
-        <button onClick={handleLogout}>Logout</button>
+        <button onClick={handleLogout}>התנתקות</button>
     );
 };

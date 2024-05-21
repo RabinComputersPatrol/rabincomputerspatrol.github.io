@@ -8,8 +8,8 @@ export default function SupportPage() {
   return (
     <div className="support-page">
       <div className="big-title-container">
-        <HomeButton />
-        <Login />
+        {/* <HomeButton />
+        <Login /> */}
         <div className='title-container'>
           <h1 className="title">טופס בעיות מחשבים</h1>
           <div>
