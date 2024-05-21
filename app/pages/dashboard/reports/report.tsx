@@ -9,18 +9,22 @@ export function ReportPage() {
 
     useEffect(() => {
         async function fetchData(id: number) {
-            const rawData: {
-                id: string;
-                priority?: number;
-                problemDescription?: string;
-                name?: string;
-                roomNumber?: number;
-                date?: string;
-                phoneNumber?: string;
-                completed?: boolean;
-            }[] = await getAllDocuments("dummy");
+            try {
+                const rawData: {
+                    id: string;
+                    priority?: number;
+                    problemDescription?: string;
+                    name?: string;
+                    roomNumber?: number;
+                    date?: string;
+                    phoneNumber?: string;
+                    completed?: boolean;
+                }[] = await getAllDocuments("dummy");
 
-            return rawData.find(data => Number.parseInt(data.id) == id);
+                return rawData.find(data => Number.parseInt(data.id) === id);
+            } catch (error) {
+                console.error("Error fetching data: ", error);
+            }
         }
 
         if (typeof window !== "undefined") {
@@ -40,11 +44,7 @@ export function ReportPage() {
     return (
         <div>
             <div>Report ID: {reportID}</div>
-            console.log("Report ID Worked!");
-            
             <div>Report Data: {JSON.stringify(reportData)}</div>
-            console.log("Report Data Worked!");
-
         </div>
     );
 }
