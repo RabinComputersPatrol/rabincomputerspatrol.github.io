@@ -139,8 +139,10 @@ export default function DashboardPage() {
         if (showHighPriority && rowData.priority < 5) return false;
         return true;
     });
+
+    const router = useRouter();
+
     function createTable() {
-        const router = useRouter();
         return (<div>
             <table>
                 <thead>
