@@ -16,6 +16,21 @@ interface IRowData {
     fixed: number; // Changed from boolean to accept 4 possible values
 }
 
+const getStatusClass = (fixedStatus: number) => {
+    switch (fixedStatus) {
+        case -1:
+            return 'error';
+        case 1:
+            return 'not-fixed';
+        case 2:
+            return 'in-progress';
+        case 3:
+            return 'fixed';
+        default:
+            return '';
+    }
+};
+
 export default function DashboardPage() {
     const [tableData, setTableData] = useState<IRowData[]>([]);
     const [hideCompleted, setHideCompleted] = useState(false);
@@ -153,7 +168,9 @@ export default function DashboardPage() {
                             <td>{rowData.roomNumber}</td>
                             <td>{rowData.date}</td>
                             <td>{rowData.phoneNumber}</td>
-                            <td>{rowData.fixed === -1 ? "Not Fixed" : rowData.fixed === 1 ? "Fixed 1" : rowData.fixed === 2 ? "Fixed 2" : "Fixed 3"}</td>
+                            <td className={getStatusClass(rowData.fixed)}>
+                                {rowData.fixed === -1 ? "ERROR" : rowData.fixed === 1 ? "Not Fixed" : rowData.fixed === 2 ? "In Progress" : "Fixed"}
+                            </td>                        
                         </tr>
                     ))}
                 </tbody>

@@ -36,3 +36,20 @@
 .dash table tbody tr:hover {
     background-color: #ddd;
 }
+
+.error {
+    background-color:  red;
+    color: white;
+}
+.not-fixed {
+    background-color: yellow;
+    color: white;
+}
+.in-progress {
+    background-color: orange;
+    color: white;
+}
+.fixed {
+    background-color: lime;
+    color: white;
+}
