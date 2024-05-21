@@ -39,17 +39,18 @@
 
 .error {
     background-color:  red;
-    color: white;
+    color: black;
+    
 }
 .not-fixed {
     background-color: yellow;
-    color: white;
+    color: black;
 }
 .in-progress {
     background-color: orange;
-    color: white;
+    color: black;
 }
 .fixed {
     background-color: lime;
-    color: white;
+    color: black;
 }

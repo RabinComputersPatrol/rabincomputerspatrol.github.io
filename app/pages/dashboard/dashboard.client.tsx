@@ -33,7 +33,7 @@ const getStatusClass = (fixedStatus: number) => {
 
 export default function DashboardPage() {
     const [tableData, setTableData] = useState<IRowData[]>([]);
-    const [hideCompleted, setHideCompleted] = useState(false);
+    const [hideFixed, setHideFixed] = useState(false);
     const [showHighPriority, setShowHighPriority] = useState(false);
 
     useEffect(() => {
@@ -135,7 +135,7 @@ export default function DashboardPage() {
     }
 
     const sortedTableData = sortData(tableData).filter(rowData => {
-        if (hideCompleted && rowData.fixed !== -1) return false; // Check for -1 value
+        if (hideFixed && rowData.fixed === 3) return false; // Hide rows where fixed is 3
         if (showHighPriority && rowData.priority < 5) return false;
         return true;
     });
@@ -198,10 +198,10 @@ export default function DashboardPage() {
                     <label>
                         <input
                             type="checkbox"
-                            checked={hideCompleted}
-                            onChange={() => setHideCompleted(!hideCompleted)}
+                            checked={hideFixed}
+                            onChange={() => setHideFixed(!hideFixed)}
                         />
-                        Hide Completed
+                        Hide Fixed
                     </label>
                 </div>
                 <div>

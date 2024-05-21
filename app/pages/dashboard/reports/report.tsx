@@ -40,7 +40,11 @@ export function ReportPage() {
     return (
         <div>
             <div>Report ID: {reportID}</div>
+            console.log("Report ID Worked!");
+            
             <div>Report Data: {JSON.stringify(reportData)}</div>
+            console.log("Report Data Worked!");
+
         </div>
     );
 }
