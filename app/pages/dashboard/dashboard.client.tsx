@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { getAllDocuments } from "@/app/api/firebase";
 import { Logout } from "../login/login.client";
+import { ReportPage } from "./reports/report";
 
 interface IRowData {
     id: string;
@@ -43,7 +44,7 @@ export default function DashboardPage() {
                     date: item.date || "",
                     phoneNumber: item.phoneNumber || "",
                     completed: item.completed || false
-                }));
+                })); ``
                 formattedData.sort((n1, n2) => {
                     return parseInt(n1.id) - parseInt(n2.date);
                 });
@@ -117,7 +118,7 @@ export default function DashboardPage() {
     });
 
     function createTable() {
-        return (
+        return (<div>
             <table>
                 <thead>
                     <tr>
@@ -154,6 +155,7 @@ export default function DashboardPage() {
                     ))}
                 </tbody>
             </table>
+        </div >
         );
     }
 
@@ -161,7 +163,7 @@ export default function DashboardPage() {
         <div className="dash">
             <div className="center container">
                 <div>
-                    <Logout/>
+                    <Logout />
                 </div>
                 <div>
                     <label>
