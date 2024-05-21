@@ -142,7 +142,7 @@ export default function DashboardPage() {
 
     const router = useRouter();
 
-    function createTable() {
+    function CreateTable() {
         return (<div>
             <table>
                 <thead>
@@ -214,7 +214,7 @@ export default function DashboardPage() {
                         Show High Priority Only
                     </label>
                 </div>
-                {tableData.length > 0 && createTable()}
+                {tableData.length > 0 && CreateTable()}
             </div>
         </div>
     );
