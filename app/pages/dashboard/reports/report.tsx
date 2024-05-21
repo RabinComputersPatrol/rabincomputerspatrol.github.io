@@ -30,7 +30,6 @@ export function ReportPage() {
                 const fetchReportData = async () => {
                     const data = await fetchData(Number.parseInt(id));
                     setReportID(Number.parseInt(id));
-                    console.log(data);
                     setReportData(data);
                 };
                 fetchReportData();
