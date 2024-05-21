@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { getAllDocuments } from "@/app/api/firebase";
 import { Logout } from "../login/login.client";
-import { ReportPage } from "./reports/report";
+import { useRouter } from "next/navigation";
 
 interface IRowData {
     id: string;
@@ -120,6 +120,7 @@ export default function DashboardPage() {
     });
 
     function createTable() {
+        const router = useRouter();
         return (<div>
             <table>
                 <thead>
@@ -144,11 +145,11 @@ export default function DashboardPage() {
                 </thead>
                 <tbody>
                     {sortedTableData.map((rowData, index) => (
-                        <tr key={index}>
+                        <tr key={index} onClick={() => router.replace(`/pages/dashboard/reports?reportID=${rowData.id}`)}>
                             <td>{rowData.id}</td>
                             <td>{rowData.priority}</td>
                             <td>{rowData.problemDescription}</td>
-                            <td>{rowData.name}</td>
+                            <td>{rowData.name}  </td>
                             <td>{rowData.roomNumber}</td>
                             <td>{rowData.date}</td>
                             <td>{rowData.phoneNumber}</td>
@@ -156,6 +157,7 @@ export default function DashboardPage() {
                         </tr>
                     ))}
                 </tbody>
+
             </table>
         </div >
         );

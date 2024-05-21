@@ -1,10 +1,22 @@
-export default function List() {
-    return(
-        <>
-            <h1>Reports List:</h1>
-            <h2>Report 1</h2>
-            <h2>Report 2</h2>
-            <h2>Report 3</h2>
-        </>
-    )
+"use client"
+
+import React, { useEffect, useState } from "react";
+export default function ReportPage() {
+    const [reportID, setReportID] = useState<number | null>(null);
+
+    useEffect(() => {
+        if (typeof window !== "undefined") {
+            const params = new URLSearchParams(window.location.search);
+            const id = params.get("reportID");
+            if (id) {
+                setReportID(Number.parseInt(id));
+            }
+        }
+    }, []);
+
+    return (
+        <div>
+            Report ID: {reportID}
+        </div>
+    );
 }
