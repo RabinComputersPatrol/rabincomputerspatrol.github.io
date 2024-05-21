@@ -3,6 +3,7 @@
 import SupportPage from './support.server';
 import SupportForm from './support.client';
 import { useRouter } from 'next/navigation';
+import { ReportPage } from '../dashboard/reports/report';
 
 export default function Support() {
   const router = useRouter()

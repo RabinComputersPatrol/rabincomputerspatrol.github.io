@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { getAllDocuments } from "@/app/api/firebase";
 import { Logout } from "../login/login.client";
+import { ReportPage } from "./reports/report";
 
 interface IRowData {
     id: string;
@@ -119,7 +120,7 @@ export default function DashboardPage() {
     });
 
     function createTable() {
-        return (
+        return (<div>
             <table>
                 <thead>
                     <tr>
@@ -156,6 +157,7 @@ export default function DashboardPage() {
                     ))}
                 </tbody>
             </table>
+        </div >
         );
     }
 
@@ -163,7 +165,7 @@ export default function DashboardPage() {
         <div className="dash">
             <div className="center container">
                 <div>
-                    <Logout/>
+                    <Logout />
                 </div>
                 <div>
                     <label>

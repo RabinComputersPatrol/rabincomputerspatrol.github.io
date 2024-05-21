@@ -1,12 +1,13 @@
 import rabinLogoSmall from "../../public/assets/rabin-logo-small.png";
 import rabinLogo from "../../public/assets/rabin-logo.png";
+import { ReportPage } from "../dashboard/reports/report";
 import { HomeButton } from "./support.client";
 import { Login } from './support.client';
-
 
 export default function SupportPage() {
   return (
     <div className="support-page">
+      <ReportPage></ReportPage>
       <div className="big-title-container">
         {/* <HomeButton />
         <Login /> */}
