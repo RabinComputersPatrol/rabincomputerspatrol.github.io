@@ -13,7 +13,7 @@ interface IRowData {
     roomNumber: number;
     date: string;
     phoneNumber: string;
-    fixed: number; // Changed from boolean to accept 4 possible values
+    fixed: number;
 }
 
 const getStatusClass = (fixedStatus: number) => {
@@ -47,8 +47,8 @@ export default function DashboardPage() {
                     roomNumber?: number;
                     date?: string;
                     phoneNumber?: string;
-                    fixed?: number; // Changed from boolean to accept 4 possible values
-                }[] = await getAllDocuments("dummy");
+                    fixed?: number;
+                }[] = await getAllDocuments("reports");
 
                 let formattedData: IRowData[] = rawData.map(item => ({
                     id: item.id || "",

@@ -18,8 +18,8 @@ export function ReportPage() {
                     roomNumber?: number;
                     date?: string;
                     phoneNumber?: string;
-                    completed?: boolean;
-                }[] = await getAllDocuments("dummy");
+                    fixed?: number;
+                }[] = await getAllDocuments("reports");
 
                 return rawData.find(data => Number.parseInt(data.id) === id);
             } catch (error) {
