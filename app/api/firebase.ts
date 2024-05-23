@@ -37,9 +37,7 @@ export { auth }
 export async function writeDoc(collectionName: string, data: any, docId: string = "NONE") {
     try {
         await setDoc(doc(firestore, collectionName, docId), data);
-        console.log("Document successfully written!");
     } catch (error) {
-        console.error("Error writing document: ", error);
     }
 }
 
@@ -47,9 +45,7 @@ export async function writeDoc(collectionName: string, data: any, docId: string 
 export async function addUser(collectionName: string, data: any, docId: string = "NONE") {
     try {
         await setDoc(doc(firestore, collectionName, docId), data);
-        console.log("Document successfully written!");
     } catch (error) {
-        console.error("Error writing document: ", error);
     }
 }
 
@@ -57,10 +53,8 @@ export async function addUser(collectionName: string, data: any, docId: string =
 export async function addDocument(collectionName: string, data: any) {
     try {
         const docRef = await addDoc(collection(firestore, collectionName), data);
-        console.log("Document added with ID: ", docRef.id);
         return docRef.id;
     } catch (error) {
-        console.error("Error adding document: ", error);
         return null;
     }
 }
@@ -87,7 +81,6 @@ export async function getAllDocuments(collectionName: string) {
 
         return documents;
     } catch (error) {
-        console.error("Error getting documents: ", error);
         return [];
     }
 }
@@ -97,8 +90,6 @@ export async function getAllDocuments(collectionName: string) {
 export async function deleteDocument(collectionName: string, docId: string) {
     try {
         await deleteDoc(doc(firestore, collectionName, docId));
-        console.log("Document successfully deleted!");
     } catch (error) {
-        console.error("Error deleting document: ", error);
     }
 }

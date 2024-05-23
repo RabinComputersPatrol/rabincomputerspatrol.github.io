@@ -12,13 +12,6 @@ const firebaseConfig = {
     appId: process.env.NEXT_PUBLIC_APP_ID
 };
 
-try {
-    console.log(firebaseConfig)
-    console.log("Logged in correctly to firebase! ",);
-} catch (e) {
-    console.error("Error while logging in: ", e);
-}
-
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app)
 

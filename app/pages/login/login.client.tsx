@@ -30,15 +30,13 @@ export const Logout = () => {
     const handleLogout = async () => {
         try {
             await signOut(auth);
-            console.log('User signed out');
             router.replace("/pages/support");
         } catch (error: any) {
-            console.error('Error signing out:', error.message);
             // Handle error gracefully, show to the user if needed
         }
     };
   
     return (
-        <button onClick={handleLogout}>התנתקות</button>
+        <button onClick={handleLogout} className='logout'>Logout</button>
     );
 };

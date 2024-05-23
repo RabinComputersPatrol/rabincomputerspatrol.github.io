@@ -61,7 +61,6 @@ export default function DashboardPage() {
                     fixed: item.fixed ?? -1 // Set default value to -1
                 }));
 
-                console.log("Formatted data before sorting:", formattedData);
 
                 formattedData = formattedData.sort((n1, n2) => {
                     if (n1.id > n2.id) {
@@ -73,11 +72,9 @@ export default function DashboardPage() {
                     }
                 });
 
-                console.log("Formatted data after sorting by ID:", formattedData);
 
                 setTableData(formattedData);
             } catch (error) {
-                console.error("Error getting documents: ", error);
             }
         }
         fetchData();
@@ -143,49 +140,51 @@ export default function DashboardPage() {
     const router = useRouter();
 
     function CreateTable() {
-        return (<div>
-            <table>
-                <thead>
-                    <tr>
-                        <th onClick={() => updateSortConfig('id', sortConfig.keys.find(k => k.key === 'id')?.direction === 'ascending' ? 'descending' : 'ascending')}>
-                            ID {sortConfig.keys.find(k => k.key === 'id')?.direction === 'ascending' ? '▼' : '▲'}
-                        </th>
-                        <th onClick={() => updateSortConfig('priority', sortConfig.keys.find(k => k.key === 'priority')?.direction === 'ascending' ? 'descending' : 'ascending')}>
-                            Priority {sortConfig.keys.find(k => k.key === 'priority')?.direction === 'ascending' ? '▼' : '▲'}
-                        </th>
-                        <th> Problem Description </th>
-                        <th> Name </th>
-                        <th> Room Number </th>
-                        <th onClick={() => updateSortConfig('date', sortConfig.keys.find(k => k.key === 'date')?.direction === 'ascending' ? 'descending' : 'ascending')}>
-                            Date {sortConfig.keys.find(k => k.key === 'date')?.direction === 'ascending' ? '▼' : '▲'}
-                        </th>
-                        <th> Phone Number </th>
-                        <th onClick={() => updateSortConfig('fixed', sortConfig.keys.find(k => k.key === 'fixed')?.direction === 'ascending' ? 'descending' : 'ascending')}>
-                            Fixed {sortConfig.keys.find(k => k.key === 'fixed')?.direction === 'ascending' ? '▼' : '▲'}
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {sortedTableData.map((rowData, index) => (
-                        <tr key={index} onClick={() => router.replace(`/pages/dashboard/reports?reportID=${rowData.id}`)}>
-                            <td>{rowData.id}</td>
-                            <td>{rowData.priority}</td>
-                            <td>{rowData.problemDescription}</td>
-                            <td>{rowData.name}  </td>
-                            <td>{rowData.roomNumber}</td>
-                            <td>{rowData.date}</td>
-                            <td>{rowData.phoneNumber}</td>
-                            <td className={getStatusClass(rowData.fixed)}>
-                                {rowData.fixed === -1 ? "ERROR" : rowData.fixed === 1 ? "Not Fixed" : rowData.fixed === 2 ? "In Progress" : "Fixed"}
-                            </td>                        
+        return (
+            <div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th onClick={() => updateSortConfig('id', sortConfig.keys.find(k => k.key === 'id')?.direction === 'ascending' ? 'descending' : 'ascending')}>
+                                ID {sortConfig.keys.find(k => k.key === 'id')?.direction === 'ascending' ? '▼' : '▲'}
+                            </th>
+                            <th onClick={() => updateSortConfig('priority', sortConfig.keys.find(k => k.key === 'priority')?.direction === 'ascending' ? 'descending' : 'ascending')}>
+                                Priority {sortConfig.keys.find(k => k.key === 'priority')?.direction === 'ascending' ? '▼' : '▲'}
+                            </th>
+                            <th>Problem Description</th>
+                            <th>Name</th>
+                            <th>Room Number</th>
+                            <th onClick={() => updateSortConfig('date', sortConfig.keys.find(k => k.key === 'date')?.direction === 'ascending' ? 'descending' : 'ascending')}>
+                                Date {sortConfig.keys.find(k => k.key === 'date')?.direction === 'ascending' ? '▼' : '▲'}
+                            </th>
+                            <th>Phone Number</th>
+                            <th onClick={() => updateSortConfig('fixed', sortConfig.keys.find(k => k.key === 'fixed')?.direction === 'ascending' ? 'descending' : 'ascending')}>
+                                Fixed {sortConfig.keys.find(k => k.key === 'fixed')?.direction === 'ascending' ? '▼' : '▲'}
+                            </th>
                         </tr>
-                    ))}
-                </tbody>
-
-            </table>
+                    </thead>
+                    <tbody>
+                        {sortedTableData.map((rowData, index) => (
+                            <tr key={index} onClick={() => router.replace(`/pages/dashboard/reports?reportID=${rowData.id}`)}>
+                                <td data-label="ID">{rowData.id}</td>
+                                <td data-label="Priority">{rowData.priority}</td>
+                                <td data-label="Problem Description">{rowData.problemDescription}</td>
+                                <td data-label="Name">{rowData.name}</td>
+                                <td data-label="Room Number">{rowData.roomNumber}</td>
+                                <td data-label="Date">{rowData.date}</td>
+                                <td data-label="Phone Number">{rowData.phoneNumber}</td>
+                                <td data-label="Fixed" className={getStatusClass(rowData.fixed)}>
+                                    {rowData.fixed === -1 ? "ERROR" : rowData.fixed === 1 ? "Not Fixed" : rowData.fixed === 2 ? "In Progress" : "Fixed"}
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
             </div>
         );
     }
+    
+    
 
 
     return (
@@ -194,7 +193,7 @@ export default function DashboardPage() {
                 <div>
                     <Logout />
                 </div>
-                <div>
+                <div className="filters">
                     <label>
                         <input
                             type="checkbox"
@@ -203,8 +202,6 @@ export default function DashboardPage() {
                         />
                         Hide Fixed
                     </label>
-                </div>
-                <div>
                     <label>
                         <input
                             type="checkbox"
@@ -217,5 +214,5 @@ export default function DashboardPage() {
                 {tableData.length > 0 && CreateTable()}
             </div>
         </div>
-    );
+    );     
 }

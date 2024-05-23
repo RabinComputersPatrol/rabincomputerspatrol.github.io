@@ -9,9 +9,6 @@ export default function formatDate() {
     return `${dd}/${mm}/${yyyy}`;
 };
    
-const today = formatDate();
-console.log(today);
-
 export function getEmailWithoutProvider(email: string): string | null {
     const parts = email.split('@');
     

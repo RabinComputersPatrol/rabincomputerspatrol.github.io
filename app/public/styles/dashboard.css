@@ -1,13 +1,55 @@
+.dash {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.center {
+    text-align: center;
+    width: 100%;
+}
+
+.dash .filters {
+    display: flex;
+    justify-content: center;
+    background-color: #007bff;
+    padding: 10px;
+    border-radius: 8px 8px 0 0;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.dash .filters label {
+    display: flex;
+    align-items: center;
+    margin: 5px;
+    font-weight: bold;
+    color: white;
+    font-size: 1rem; /* Increased font size for filters */
+}
+
+input[type="checkbox"] {
+    margin-right: 8px;
+}
+
 .dash table {
     width: 100%;
     border-collapse: collapse;
-    margin: 20px 0;
-    font-family: Arial, sans-serif;
-    margin-top: 400px;
-    position: static;
-    bottom: 0; 
+    margin: 0;
+    table-layout: auto;
 }
-
 
 .dash table thead {
     background-color: #007bff;
@@ -15,12 +57,32 @@
 }
 
 .dash table thead th {
-    padding: 10px;
+    padding: 12px; /* Increased padding */
     text-align: left;
+    cursor: pointer;
+    position: relative;
+    word-wrap: break-word;
+    font-size: 0.875rem; /* Increased font size for table header */
+}
+
+.dash table thead th::after {
+    content: "";
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: solid transparent;
+    border-width: 0 4px 4px 4px;
+    border-bottom-color: white;
+}
+
+.dash table thead th.ascending::after {
+    transform: translateY(-50%) rotate(180deg);
 }
 
 .dash table tbody tr {
     border-bottom: 1px solid #ddd;
+    transition: background-color 0.3s ease;
 }
 
 .dash table tbody tr:nth-child(even) {
@@ -28,29 +90,109 @@
 }
 
 .dash table tbody td {
-    padding: 10px;
+    padding: 12px;
     text-align: left;
-    border-style: ridge;
+    word-wrap: break-word;
+    font-size: 0.875rem; /* Increased font size for table body */
 }
 
 .dash table tbody tr:hover {
-    background-color: #ddd;
+    background-color: #f1f1f1;
 }
 
-.error {
-    background-color:  red;
-    color: black;
-    
+.dash .error {
+    background-color: red;
+    color: white;
 }
-.not-fixed {
+
+.dash .not-fixed {
     background-color: yellow;
     color: black;
 }
-.in-progress {
+
+.dash .in-progress {
     background-color: orange;
-    color: black;
+    color: white;
 }
-.fixed {
-    background-color: lime;
-    color: black;
+
+.dash .fixed {
+    background-color: limegreen;
+    color: white;
+}
+
+.logout {
+    background-color: #dc3545;
+    color: white;
+    padding: 10px 20px;
+    border: 2px solid #dc3545;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s, border-color 0.3s; 
+}
+
+.logout:hover {
+    background-color: #c82333;
+    border-color: #c82333;
+}
+
+
+
+@media (max-width: 768px) {
+    .container {
+        max-width: 400px;
+        padding: 10px;
+    }
+
+    .dash .filters {
+        flex-direction: column;
+        align-items: center;
+        padding: 5px;
+    }
+
+    .dash .filters label {
+        margin-bottom: 5px;
+    }
+
+    .dash table {
+        width: 100%;
+        overflow-x: auto;
+    }
+
+    .dash table thead,
+    .dash table tbody,
+    .dash table th,
+    .dash table td,
+    .dash table tr {
+        display: block;
+    }
+
+    .dash table thead th {
+        text-align: left;
+        padding: 12px; 
+    }
+
+    .dash table tbody td {
+        text-align: left;
+        padding-left: 50%;
+        position: relative;
+    }
+
+    .dash table tbody td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 0;
+        width: 50%;
+        padding-left: 10px;
+        font-weight: bold;
+        white-space: nowrap;
+    }
+
+    .dash table tbody td[data-label="ID"]::before {
+        display: none;
+    }
+
+    .dash .filters {
+        margin-bottom: -1px;
+    }
 }

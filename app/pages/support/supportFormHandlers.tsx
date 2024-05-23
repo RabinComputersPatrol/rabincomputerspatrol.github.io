@@ -15,18 +15,6 @@ export const handleSubmit = async (event: React.FormEvent<HTMLFormElement>, form
         const formData = new FormData(formRef.current);
         const { roomNumber, phoneNumber, name, priority, problemDescription } = Object.fromEntries(formData.entries());
         const date = formatDate();
-        console.log({ date, roomNumber, phoneNumber, name, priority, problemDescription });
-
-        // Debugging: Log the data being sent to Firestore
-        console.log("Data to be written to Firestore:", {
-            date: date,
-            roomNumber: parseInt(roomNumber.toString()),
-            phoneNumber: phoneNumber,
-            name: name,
-            priority: parseInt(priority.toString()),
-            problemDescription: problemDescription,
-            completed: false,
-        });
 
         const docRef = doc(db, "backend data", "Main");
         const docSnap = await getDoc(docRef);
@@ -34,10 +22,8 @@ export const handleSubmit = async (event: React.FormEvent<HTMLFormElement>, form
 
 
         if (docSnap.exists()) {
-            console.log("Document data:", docSnap.data());
             lastID = docSnap.get("last-report-id");
         } else {
-            console.log("No such document!");
         }
 
         try {
@@ -56,9 +42,7 @@ export const handleSubmit = async (event: React.FormEvent<HTMLFormElement>, form
             });
 
 
-            console.log("Document written with ID: ", lastID);
         } catch (e) {
-            console.error("Error adding document: ", e);
         }
 
         formRef.current.reset();

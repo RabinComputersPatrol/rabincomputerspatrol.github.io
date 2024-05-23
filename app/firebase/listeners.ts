@@ -45,9 +45,7 @@ const LoginAuthListener = () => {
     const handleBeforeUnload = (event: BeforeUnloadEvent) => {
       event.preventDefault();
       signOut(auth).then(() => {
-        console.log("User signed out.");
       }).catch((error) => {
-        console.error("Error signing out:", error);
       });
     };
 

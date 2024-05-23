@@ -63,7 +63,7 @@ footer {
 
 @media only screen and (max-width: 480px) {
     .container {
-        width: 100%;
+        width: 60%;
         max-width: none;
         padding: 10px;
     }

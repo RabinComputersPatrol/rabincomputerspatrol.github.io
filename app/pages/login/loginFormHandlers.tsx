@@ -22,7 +22,6 @@ export const handleSubmit = async (event: React.FormEvent<HTMLFormElement>, form
           username = getEmailWithoutProvider(email)!; 
         }
 
-        console.log({ email, password });   
 
         const users = await getAllDocuments("users");
         for (const user of users) {
@@ -35,7 +34,6 @@ export const handleSubmit = async (event: React.FormEvent<HTMLFormElement>, form
                 .catch((error) => {
                     const errorCode = error.code;
                     const errorMessage = error.message;
-                    console.error(errorCode, errorMessage);
                 });
                 formRef.current.reset();
                 return;
@@ -58,14 +56,12 @@ export const handleSubmit = async (event: React.FormEvent<HTMLFormElement>, form
                 .catch((error) => {
                     const errorCode = error.code;
                     const errorMessage = error.message;
-                    console.error(errorCode, errorMessage);
                 });
 
             })
             .catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
-                console.error(errorCode, errorMessage);
             });
         formRef.current.reset();
     }
