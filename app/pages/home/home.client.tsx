@@ -18,7 +18,8 @@ export default function HomeClient() {
     };
 
     const handleButtonClick = (route: string) => {
-        router.replace(route);
+        router.push(route);
+        router.refresh();
     };
 
     return (

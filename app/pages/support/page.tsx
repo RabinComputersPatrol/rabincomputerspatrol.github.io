@@ -10,7 +10,10 @@ export default function Support() {
     <div className="container">
       <SupportPage />
       <SupportForm />
-      <footer className="footer" onClick={() => router.replace('/pages/login')}>
+      <footer className="footer" onClick={() => {
+        router.push('/pages/login');
+        router.refresh();
+      }}>
         © 2024 נועם ולט. כל הזכויות שמורות.
       </footer>
     </div>

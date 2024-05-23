@@ -77,7 +77,7 @@ export async function getAllDocuments(collectionName: string) {
 
         localStorage.setItem(cacheKey, JSON.stringify(documents));
 
-        localStorage.setItem(cacheExpiryKey, (Date.now() + 60000).toString()); // 1 Minute update
+        localStorage.setItem(cacheExpiryKey, (Date.now() + 10).toString()); // 10 Seconds update
 
         return documents;
     } catch (error) {

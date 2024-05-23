@@ -47,11 +47,14 @@ export function Login() {
 
     return (
         <div className='login'>
-            <button type="button" onClick={() => router.replace('/pages/login')}>
-             Login
+            <button type="button" onClick={() => {
+                router.push('/pages/login');
+                router.refresh();
+            }}>
+                Login
             </button>
         </div>
-      )
+    )
 
 }
 
@@ -60,10 +63,12 @@ export function HomeButton() {
 
     return (
         <div className='home'>
-            <button type="button" onClick={() => router.replace('/pages/login')}>
-             Home
+            <button type="button" onClick={() => {
+                router.push('/pages/login'); router.refresh();
+            }}>
+                Home
             </button>
         </div>
-      )
+    )
 
 }

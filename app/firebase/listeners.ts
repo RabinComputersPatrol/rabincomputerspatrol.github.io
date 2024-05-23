@@ -32,11 +32,13 @@ const LoginAuthListener = () => {
         for (const member of members) {
           const memberEmail = member.id;
           if (email == memberEmail) {
-            router.replace('/pages/dashboard');
+            router.push('/pages/dashboard');
+            router.refresh();
             return;
           }
         }
-        router.replace("/pages/support");
+        router.push("/pages/support");
+        router.refresh();
         signOut(auth);
       } else {
       }
@@ -87,15 +89,18 @@ export const DashboardAuthListener = () => {
             return;
           } else {
             // Redirect to dashboard if logged in but not on a nested dashboard page
-            router.replace('/pages/dashboard');
+            router.push('/pages/dashboard');
+            router.refresh();
             return;
           }
         } else {
-          router.replace('/pages/login');
+          router.push('/pages/login');
+          router.refresh();
           await signOut(auth);
         }
       } else {
-        router.replace('/pages/support'); 
+        router.push('/pages/support'); 
+        router.refresh();
       }
     });
 

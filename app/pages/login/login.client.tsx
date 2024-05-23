@@ -30,7 +30,8 @@ export const Logout = () => {
     const handleLogout = async () => {
         try {
             await signOut(auth);
-            router.replace("/pages/support");
+            router.push("/pages/support");
+            router.refresh();
         } catch (error: any) {
             // Handle error gracefully, show to the user if needed
         }

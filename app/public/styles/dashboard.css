@@ -101,23 +101,19 @@ input[type="checkbox"] {
 }
 
 .dash .error {
-    background-color: red;
-    color: white;
+    background-color: #e74c3c;
 }
 
 .dash .not-fixed {
-    background-color: yellow;
-    color: black;
+    background-color: #f39c12;
 }
 
 .dash .in-progress {
-    background-color: orange;
-    color: white;
+    background-color: #f1c40f;
 }
 
 .dash .fixed {
-    background-color: limegreen;
-    color: white;
+    background-color: #2ecc71;
 }
 
 .logout {

@@ -16,7 +16,7 @@ interface IRowData {
     fixed: number;
 }
 
-const getStatusClass = (fixedStatus: number) => {
+export const getStatusClass = (fixedStatus: number) => {
     switch (fixedStatus) {
         case -1:
             return 'error';
@@ -48,7 +48,7 @@ export default function DashboardPage() {
                     date?: string;
                     phoneNumber?: string;
                     fixed?: number;
-                }[] = await getAllDocuments("reports");
+                }[] = await getAllDocuments("dummy");
 
                 let formattedData: IRowData[] = rawData.map(item => ({
                     id: item.id || "",
@@ -165,7 +165,10 @@ export default function DashboardPage() {
                     </thead>
                     <tbody>
                         {sortedTableData.map((rowData, index) => (
-                            <tr key={index} onClick={() => router.replace(`/pages/dashboard/reports?reportID=${rowData.id}`)}>
+                            <tr key={index} onClick={() => {
+                                router.push(`/pages/dashboard/reports?reportID=${rowData.id}`);
+                                router.refresh();
+                            }}>
                                 <td data-label="ID">{rowData.id}</td>
                                 <td data-label="Priority">{rowData.priority}</td>
                                 <td data-label="Problem Description">{rowData.problemDescription}</td>
@@ -183,8 +186,8 @@ export default function DashboardPage() {
             </div>
         );
     }
-    
-    
+
+
 
 
     return (
@@ -214,5 +217,5 @@ export default function DashboardPage() {
                 {tableData.length > 0 && CreateTable()}
             </div>
         </div>
-    );     
+    );
 }
