@@ -24,7 +24,7 @@ export default function ReportPage() {
                     date?: string;
                     phoneNumber?: string;
                     fixed?: number;
-                }[] = await getAllDocuments("dummy");
+                }[] = await getAllDocuments("reports");
 
                 return rawData.find(data => Number.parseInt(data.id) === id);
             } catch (error) {
@@ -62,7 +62,7 @@ export default function ReportPage() {
             fixed: status   
         };
         setReportData(updatedData);
-        writeDoc("dummy", updatedData, reportID?.toString());
+        writeDoc("reports", updatedData, reportID?.toString());
     };
     
 

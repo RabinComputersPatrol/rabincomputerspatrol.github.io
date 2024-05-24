@@ -48,7 +48,7 @@ export default function DashboardPage() {
                     date?: string;
                     phoneNumber?: string;
                     fixed?: number;
-                }[] = await getAllDocuments("dummy");
+                }[] = await getAllDocuments("reports");
 
                 let formattedData: IRowData[] = rawData.map(item => ({
                     id: item.id || "",

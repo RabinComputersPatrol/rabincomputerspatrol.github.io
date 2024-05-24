@@ -14,7 +14,7 @@ export default function Support() {
         router.push('/pages/login');
         router.refresh();
       }}>
-        © 2024 נועם ולט. כל הזכויות שמורות.
+                © 2024 כל הזכויות שמורות.
       </footer>
     </div>
   );

@@ -7,7 +7,7 @@ export default function Support() {
         <div className="container">
             <LoginForm />
             <footer className="footer">
-                © 2024 נועם ולט. כל הזכויות שמורות.
+                © 2024 כל הזכויות שמורות.
             </footer>
         </div>
     );
