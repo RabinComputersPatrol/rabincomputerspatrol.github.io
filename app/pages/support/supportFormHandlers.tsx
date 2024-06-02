@@ -51,7 +51,7 @@ export const handleSubmit = async (event: React.FormEvent<HTMLFormElement>, form
 
 
 export const formatPhoneNumber = (event: React.ChangeEvent<HTMLInputElement>) => {
-    let inputValue = event.target.value.replace(/\D/g, '').slice(0, 12);
+    let inputValue = event.target.value.replace(/\D/g, '').slice(0, 10);
     inputValue = inputValue.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3');
     event.target.value = inputValue;
 
