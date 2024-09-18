@@ -35,12 +35,11 @@ class ComputerPatrol extends StatelessWidget {
             ),
             home: const Scaffold(
                 body: Center(child: Text('Error initializing app'))),
+            debugShowCheckedModeBanner: false,
           );
         }
 
-        // Once initialization is complete, build the actual app
-        var (primaryColor, isDarkMode) = GlobalTheme
-            .init(); // Synchronous variant for use post-initialization
+        var (primaryColor, isDarkMode) = GlobalTheme.init();
 
         return MaterialApp(
           title: 'Computer Problems',

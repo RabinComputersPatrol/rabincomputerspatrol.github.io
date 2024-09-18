@@ -21,6 +21,25 @@ class DatabaseAPI {
     firestore = FirebaseFirestore.instanceFor(app: app!);
   }
 
+  Future<List<Map<String, dynamic>>> getAllDocuments(
+      String collectionPath) async {
+    if (firestore == null) {
+      throw Exception("Firebase not initialized");
+    }
+
+    try {
+      QuerySnapshot querySnapshot =
+          await firestore!.collection(collectionPath).get();
+      List<Map<String, dynamic>> documents = querySnapshot.docs.map((doc) {
+        return doc.data() as Map<String, dynamic>;
+      }).toList();
+
+      return documents;
+    } on FirebaseException catch (_) {
+      rethrow;
+    }
+  }
+
   Future<void> uploadJson(Map<String, dynamic> jsonData, String collectionPath,
       String documentId) async {
     if (firestore == null) {
