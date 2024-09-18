@@ -37,6 +37,7 @@ dependencies:
   cupertino_icons: ^1.0.8
   import_sorter: ^4.6.0
   firebase_core: ^3.3.0
+  cloud_firestore: ^5.4.2
   
 dev_dependencies:
   flutter_test:

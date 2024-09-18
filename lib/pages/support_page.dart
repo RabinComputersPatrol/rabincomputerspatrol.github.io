@@ -1,8 +1,8 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 // Project imports:
+import 'package:rabincomputerspatrol/services/firebase/firebase_api.dart';
 import 'package:rabincomputerspatrol/services/priority.dart';
 import 'package:rabincomputerspatrol/services/text_formatter_builder.dart';
 import 'package:rabincomputerspatrol/services/theme.dart';
@@ -37,10 +37,27 @@ class _SupportPageState extends State<SupportPage> {
 
   Priority _priority = Priorities.normal;
 
-  void handleSubmit() {
+  void handleSubmit() async {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
-      // Submit form data logic
+
+      DateTime time = DateTime.now();
+
+      await DatabaseAPI.instance.uploadJson(
+        {
+          "date": "${time.day}/${time.month}/${time.year}",
+          "fixed": false,
+          "name": _nameController.text,
+          "phoneNumber": _phoneNumberController.text,
+          "roomNumber": int.tryParse(_roomNumberController.text) ?? -1,
+          "priority": _priority.value,
+          "problemDescription": _problemDescriptionController.text,
+        },
+        "reports",
+        "${_roomNumberController.text}_${time.hour}:${time.minute}:${time.millisecond}_${time.year}:${time.month}:${time.day}",
+      );
+
+      resetFields();
     }
   }
 
@@ -162,5 +179,15 @@ class _SupportPageState extends State<SupportPage> {
         ),
       ),
     );
+  }
+
+  void resetFields() {
+    setState(() {
+      _nameController.text = "";
+      _phoneNumberController.text = "";
+      _roomNumberController.text = "";
+      _problemDescriptionController.text = "";
+      _priority = Priorities.normal;
+    });
   }
 }
