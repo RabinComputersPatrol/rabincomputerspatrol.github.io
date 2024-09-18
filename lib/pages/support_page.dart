@@ -1,5 +1,4 @@
 // Flutter imports:
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 // Project imports:
@@ -9,6 +8,9 @@ import 'package:rabincomputerspatrol/services/text_formatter_builder.dart';
 import 'package:rabincomputerspatrol/services/theme.dart';
 import 'package:rabincomputerspatrol/widgets/dialog_widgets/dashboard_login_dialog.dart';
 import 'package:rabincomputerspatrol/widgets/dialog_widgets/dialog_text_input.dart';
+
+// Package imports:
+
 
 // Utility functions for formatting phone and room numbers
 String formatPhoneNumber(String phoneNumber) {

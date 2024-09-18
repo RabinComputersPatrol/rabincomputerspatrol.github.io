@@ -1,7 +1,12 @@
 // ignore_for_file: use_build_context_synchronously
 
-import 'package:collection/collection.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:collection/collection.dart';
+
+// Project imports:
 import 'package:rabincomputerspatrol/pages/dashboard_page.dart';
 import 'package:rabincomputerspatrol/services/firebase/firebase_api.dart';
 import 'package:rabincomputerspatrol/services/theme.dart';
