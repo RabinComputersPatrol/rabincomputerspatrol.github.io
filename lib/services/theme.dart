@@ -7,6 +7,7 @@ class GlobalTheme {
 
   static get primaryColor => _primaryColor;
   static get isDarkMode => _isDarkMode;
+  static get textColor => _isDarkMode ? Colors.white : Colors.black;
 
   static (Color, bool) init() {
     var brightness =

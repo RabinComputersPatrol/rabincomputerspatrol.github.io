@@ -1,5 +1,6 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:rabincomputerspatrol/services/theme.dart';
 
 class Priority {
   String name;
@@ -9,8 +10,10 @@ class Priority {
   Priority({
     required this.name,
     required this.value,
-    this.color = Colors.black,
-  });
+    this.color,
+  }) {
+    color ??= GlobalTheme.textColor;
+  }
 }
 
 abstract class Priorities {

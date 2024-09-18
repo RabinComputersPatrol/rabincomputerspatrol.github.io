@@ -94,14 +94,9 @@ class _SupportPageState extends State<SupportPage> {
             // Phone number field
             DialogTextInput(
               textEditingController: _phoneNumberController,
-              label: 'Phone Number',
+              label: 'Phone Number (e.g 0540000000)',
               keyboard: TextInputType.phone,
-              formatter: TextInputFormatter.withFunction((oldValue, newValue) {
-                return TextEditingValue(
-                  text: formatPhoneNumber(newValue.text),
-                  selection: newValue.selection,
-                );
-              }),
+              formatter: TextFormatterBuilder.integerTextFormatter(),
               onSubmit: (value) {
                 if (value.isEmpty ||
                     !RegExp(r'^\d{3}-\d{3}-\d{4}$').hasMatch(value)) {
@@ -158,7 +153,6 @@ class _SupportPageState extends State<SupportPage> {
               },
             ),
             const SizedBox(height: 5),
-
             // Submit button
             ElevatedButton(
               onPressed: handleSubmit,
