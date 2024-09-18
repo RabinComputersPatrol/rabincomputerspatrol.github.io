@@ -4,6 +4,8 @@ import 'package:flutter/services.dart';
 
 // Project imports:
 import 'package:rabincomputerspatrol/services/priority.dart';
+import 'package:rabincomputerspatrol/services/text_formatter_builder.dart';
+import 'package:rabincomputerspatrol/services/theme.dart';
 import 'package:rabincomputerspatrol/widgets/dialog_widgets/dialog_text_input.dart';
 
 // Utility functions for formatting phone and room numbers
@@ -59,15 +61,16 @@ class _SupportPageState extends State<SupportPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const Row(
+            Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Flexible(
                   child: Image(
-                    image: AssetImage("assets/rabin-logo.png"),
+                    image: const AssetImage("assets/rabin-logo.png"),
+                    color: GlobalTheme.isDarkMode ? Colors.blueAccent : null,
                   ),
                 ),
-                Flexible(
+                const Flexible(
                     child: Text(
                   "Computer Problems Form",
                   textScaler: TextScaler.linear(1.5),
@@ -80,12 +83,7 @@ class _SupportPageState extends State<SupportPage> {
               textEditingController: _roomNumberController,
               label: 'Room Number',
               keyboard: TextInputType.number,
-              formatter: TextInputFormatter.withFunction((oldValue, newValue) {
-                return TextEditingValue(
-                  text: formatRoomNumber(newValue.text),
-                  selection: newValue.selection,
-                );
-              }),
+              formatter: TextFormatterBuilder.integerTextFormatter(),
               onSubmit: (value) {
                 if (value.isEmpty) {
                   // Show error if necessary
