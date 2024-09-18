@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 
 // Project imports:
+import 'package:rabincomputerspatrol/pages/report_page.dart';
 import 'package:rabincomputerspatrol/services/api/issue_report.dart';
 import 'package:rabincomputerspatrol/services/firebase/firebase_api.dart';
 
@@ -59,7 +60,7 @@ class _DashboardPageState extends State<DashboardPage> {
                           columnIndex, ascending, (report) => report.priority),
                     ),
                     DataColumn(
-                      label: const Text('Time'),
+                      label: const Text('Date'),
                       onSort: (columnIndex, ascending) => _onSort(
                           columnIndex, ascending, (report) => report.date),
                     ),
@@ -70,7 +71,17 @@ class _DashboardPageState extends State<DashboardPage> {
                       DataCell(IconButton(
                         icon: const Icon(Icons.preview_outlined),
                         onPressed: () {
-                          // TODO edit & view single report
+                          showDialog(
+                            context: context,
+                            builder: (context) => ReportPage(
+                              report: report,
+                              dashboardCallback: () {
+                                setState(() {
+                                  getReports();
+                                });
+                              },
+                            ),
+                          );
                         },
                         tooltip: "View & Edit",
                       )),
@@ -78,7 +89,12 @@ class _DashboardPageState extends State<DashboardPage> {
                       DataCell(Text(report.name)),
                       DataCell(Text(report.roomNumber.toString())),
                       DataCell(Text(report.priority.toString())),
-                      DataCell(Text(report.date.toString().split(" ")[0])),
+                      DataCell(
+                        Tooltip(
+                          message: report.time,
+                          child: Text(report.date.toString().split(" ")[0]),
+                        ),
+                      ),
                       DataCell(Text(report.problemDescription)),
                     ]);
                   }).toList(),

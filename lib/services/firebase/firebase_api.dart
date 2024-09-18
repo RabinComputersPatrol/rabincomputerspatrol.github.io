@@ -73,4 +73,12 @@ class DatabaseAPI {
       rethrow;
     }
   }
+
+  Future<void> deleteDocument(String collectionPath, String documentId) async {
+    if (firestore == null) {
+      throw Exception("Firebase not initialized");
+    }
+
+    await firestore?.collection(collectionPath).doc(documentId).delete();
+  }
 }

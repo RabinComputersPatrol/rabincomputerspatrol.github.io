@@ -11,7 +11,6 @@ import 'package:rabincomputerspatrol/widgets/dialog_widgets/dialog_text_input.da
 
 // Package imports:
 
-
 // Utility functions for formatting phone and room numbers
 String formatPhoneNumber(String phoneNumber) {
   // Your phone number formatting logic here
@@ -50,6 +49,7 @@ class _SupportPageState extends State<SupportPage> {
       await DatabaseAPI.instance.uploadJson(
         {
           "date": "${time.day}/${time.month}/${time.year}",
+          "time": "${time.hour}:${time.minute}:${time.millisecond}",
           "fixed": false,
           "name": _nameController.text,
           "phoneNumber": _phoneNumberController.text,
