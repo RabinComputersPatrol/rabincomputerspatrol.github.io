@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:rabincomputerspatrol/services/priority.dart';
-import 'package:rabincomputerspatrol/widgets/dialog_widgets/dialog_text_input.dart'; // For formatting phone and room numbers
+import 'package:rabincomputerspatrol/widgets/dialog_widgets/dialog_text_input.dart';
 
 // Utility functions for formatting phone and room numbers
 String formatPhoneNumber(String phoneNumber) {
@@ -90,7 +90,6 @@ class _SupportPageState extends State<SupportPage> {
               },
             ),
             const SizedBox(height: 5),
-
             // Phone number field
             DialogTextInput(
               textEditingController: _phoneNumberController,
@@ -110,7 +109,6 @@ class _SupportPageState extends State<SupportPage> {
               },
             ),
             const SizedBox(height: 5),
-
             // Name field
             DialogTextInput(
               textEditingController: _nameController,
@@ -122,7 +120,6 @@ class _SupportPageState extends State<SupportPage> {
               },
             ),
             const SizedBox(height: 5),
-
             // Priority dropdown
             const Text('דחיפות:', style: TextStyle(fontSize: 16)),
             Flexible(
@@ -148,7 +145,6 @@ class _SupportPageState extends State<SupportPage> {
               ),
             ),
             const SizedBox(height: 5),
-
             // Problem description field
             DialogTextInput(
               textEditingController: _problemDescriptionController,
