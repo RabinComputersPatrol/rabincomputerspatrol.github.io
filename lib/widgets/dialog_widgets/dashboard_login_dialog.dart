@@ -5,12 +5,12 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:collection/collection.dart';
+// import 'package:shared_preferences/shared_preferences.dart';
 
 // Project imports:
 import 'package:rabincomputerspatrol/pages/dashboard_page.dart';
 import 'package:rabincomputerspatrol/services/firebase/firebase_api.dart';
 import 'package:rabincomputerspatrol/widgets/dialog_widgets/dialog_text_input.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class DashboardLoginDialog extends StatefulWidget {
   final BuildContext superContext;
@@ -70,10 +70,11 @@ class _DashboardLoginDialogState extends State<DashboardLoginDialog> {
 
                         // Logged in successfully
                         if (user != null) {
-                          SharedPreferences prefs = await SharedPreferences.getInstance();
-                          await prefs.setString('name', user["name"]);
-                          await prefs.setString('password', user["password"]);
-                          await prefs.setInt('permission', user["permission"]);
+                          // SharedPreferences prefs =
+                          //     await SharedPreferences.getInstance();
+                          // await prefs.setString('name', user["name"]);
+                          // await prefs.setString('password', user["password"]);
+                          // await prefs.setInt('permission', user["permission"]);
                         }
 
                         if (mounted) {
@@ -82,7 +83,8 @@ class _DashboardLoginDialogState extends State<DashboardLoginDialog> {
                                   builder: (superContext) =>
                                       const DashboardPage()));
                         }
-                                            } catch (e) {
+                      } catch (e) {
+                        print(e);
                         // Handle any error during the async operation
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(

@@ -1,16 +1,21 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
+// import 'package:shared_preferences/shared_preferences.dart';
+
+// Project imports:
 import 'package:rabincomputerspatrol/pages/support_page.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class DashboardLogout extends StatelessWidget {
   const DashboardLogout({super.key});
 
   Future<void> _logout(BuildContext context) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
+    // SharedPreferences prefs = await SharedPreferences.getInstance();
 
-    await prefs.remove('name');
-    await prefs.remove('password');
-    await prefs.remove('permission');
+    // await prefs.remove('name');
+    // await prefs.remove('password');
+    // await prefs.remove('permission');
 
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
@@ -20,7 +25,7 @@ class DashboardLogout extends StatelessWidget {
 
     Navigator.of(context).pushAndRemoveUntil(
       MaterialPageRoute(builder: (context) => const SupportPage()),
-          (Route<dynamic> route) => false,
+      (Route<dynamic> route) => false,
     );
   }
 
