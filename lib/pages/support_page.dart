@@ -1,5 +1,8 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:rabincomputerspatrol/pages/dashboard_page.dart';
+import 'package:rabincomputerspatrol/services/api/verify_session.dart';
 
 // Project imports:
 import 'package:rabincomputerspatrol/services/firebase/firebase_api.dart';
@@ -76,6 +79,10 @@ class _SupportPageState extends State<SupportPage> {
 
   @override
   Widget build(BuildContext context) {
+    final GlobalTheme theme = Provider.of<GlobalTheme>(context);
+    final double screenWidth = MediaQuery.of(context).size.width;
+    final double screenHeight = MediaQuery.of(context).size.height;
+
     return Scaffold(
       body: Form(
         key: _formKey,
@@ -184,13 +191,33 @@ class _SupportPageState extends State<SupportPage> {
       ),
       persistentFooterButtons: [
         TextButton(
-          onPressed: () {
-            showDialog(
-              context: context,
-              builder: (context) => DashboardLoginDialog(
-                superContext: context,
-              ),
-            );
+          onPressed: () async {
+            VerifySession sessionVerifier = VerifySession();
+            bool isValidSession = await sessionVerifier.verifySession(context);
+
+            if (isValidSession) {
+              // Use push instead of pushReplacement to maintain the back stack
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => const DashboardPage()),
+              );
+            } else {
+              // Show the login dialog if the session is not valid
+              showDialog(
+                context: context,
+                builder: (context) =>
+                    DashboardLoginDialog(superContext: context),
+              ).then((_) {
+                // Re-verify session after the dialog is closed
+                sessionVerifier.verifySession(context).then((isValidSession) {
+                  if (isValidSession) {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                          builder: (context) => const DashboardPage()),
+                    );
+                  }
+                });
+              });
+            }
           },
           child: const Text("© 2024 All rights reserved."),
         )

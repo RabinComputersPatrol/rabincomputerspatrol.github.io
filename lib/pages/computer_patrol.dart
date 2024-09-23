@@ -1,5 +1,5 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 // Project imports:
 import 'package:rabincomputerspatrol/pages/support_page.dart';
@@ -10,7 +10,6 @@ class ComputerPatrol extends StatelessWidget {
   const ComputerPatrol({super.key});
 
   Future<void> _initializeApp() async {
-    GlobalTheme.init();
     await DatabaseAPI.instance.initialize();
   }
 
@@ -19,12 +18,10 @@ class ComputerPatrol extends StatelessWidget {
     return FutureBuilder<void>(
       future: _initializeApp(),
       builder: (context, snapshot) {
-        // While waiting for the future, show a loading indicator
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator());
         }
 
-        // If there's an error during initialization
         if (snapshot.hasError) {
           return MaterialApp(
             title: 'Computer Problems',
@@ -39,17 +36,24 @@ class ComputerPatrol extends StatelessWidget {
           );
         }
 
-        var (primaryColor, isDarkMode) = GlobalTheme.init();
-
-        return MaterialApp(
-          title: 'Computer Problems',
-          theme: ThemeData(
-            primaryColor: primaryColor,
-            useMaterial3: true,
-            brightness: isDarkMode ? Brightness.dark : Brightness.light,
+        return ChangeNotifierProvider(
+          create: (context) {
+            final theme = GlobalTheme();
+            theme.init(); // Initialize theme
+            return theme;
+          },
+          child: Consumer<GlobalTheme>(
+            builder: (context, theme, child) {
+              return MaterialApp(
+                title: 'Computer Problems',
+                theme: ThemeData(
+                  colorScheme: theme.colorScheme,
+                ),
+                debugShowCheckedModeBanner: false,
+                home: const SupportPage(),
+              );
+            },
           ),
-          debugShowCheckedModeBanner: false,
-          home: const SupportPage(),
         );
       },
     );
