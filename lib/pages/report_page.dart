@@ -87,21 +87,23 @@ class _ReportPageState extends State<ReportPage> {
             SizedBox(
               height: 50,
               width: 200,
-              child: DropdownMenu<double>(
-                dropdownMenuEntries: const [
-                  DropdownMenuEntry(value: 0, label: "Not Fixed"),
-                  DropdownMenuEntry(value: 0.5, label: "In Progress"),
-                  DropdownMenuEntry(value: 1, label: "Fixed"),
-                ],
-                onSelected: (value) async {
-                  await DatabaseAPI.instance.uploadJson(
-                      (widget.report..status = value ?? 0).toJson(),
-                      "reports",
-                      widget.report.generateDocumentId());
-                },
-                initialSelection: widget.report.status,
+              child: Center(
+                child: DropdownMenu<double>(
+                  dropdownMenuEntries: const [
+                    DropdownMenuEntry(value: 0, label: "Not Fixed"),
+                    DropdownMenuEntry(value: 0.5, label: "In Progress"),
+                    DropdownMenuEntry(value: 1, label: "Fixed"),
+                  ],
+                  onSelected: (value) async {
+                    await DatabaseAPI.instance.uploadJson(
+                        (widget.report..status = value ?? 0).toJson(),
+                        "reports",
+                        widget.report.generateDocumentId());
+                  },
+                  initialSelection: widget.report.status,
+                ),
               ),
-            )
+            ),
           ],
         ),
       ),
