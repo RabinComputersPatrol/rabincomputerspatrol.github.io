@@ -87377,9 +87377,12 @@ ap(){this.aH()
 this.qs()},
 vo(){var s=0,r=A.L(t.ui),q,p=this,o,n,m,l,k,j
 var $async$vo=A.M(function(a,b){if(a===1)return A.I(b,r)
-while(true)switch(s){case 0:try{o=A.b6($.iP.a.h(0,"name"))
-n=A.b6($.iP.a.h(0,"password"))
-m=A.eg($.iP.a.h(0,"permission"))
+while(true)switch(s){case 0:try{k=$.iP
+o=k==null?null:A.b6(k.a.h(0,"name"))
+k=$.iP
+n=k==null?null:A.b6(k.a.h(0,"password"))
+k=$.iP
+m=k==null?null:A.eg(k.a.h(0,"permission"))
 if(o==null||n==null||m==null){k=A.cl("Missing user data")
 throw A.h(k)}k=n
 k.toString
@@ -87740,18 +87743,20 @@ Js(){var s=this.a
 return""+this.w+"_"+this.b+"_"+A.jj(s)+":"+A.dY(s)+":"+A.ji(s)}}
 A.afI.prototype={
 vg(a){return this.aqT(a)},
-aqT(a){var s=0,r=A.L(t.y),q,p=2,o,n,m,l,k,j,i,h
+aqT(a){var s=0,r=A.L(t.y),q,p=2,o,n,m,l,k,j,i,h,g
 var $async$vg=A.M(function(b,c){if(b===1){o=c
-s=p}while(true)switch(s){case 0:j=A.b6($.iP.a.h(0,"name"))
-i=A.b6($.iP.a.h(0,"password"))
-if(j==null||i==null){q=!1
+s=p}while(true)switch(s){case 0:i=$.iP
+h=i==null?null:A.b6(i.a.h(0,"name"))
+i=$.iP
+n=i==null?null:A.b6(i.a.h(0,"password"))
+if(h==null||n==null){q=!1
 s=1
 break}p=4
 s=7
 return A.R($.jQ().mQ("users"),$async$vg)
-case 7:n=c
-m=A.ayt(n,new A.afJ(j,i))
-if(m!=null){q=!0
+case 7:m=c
+l=A.ayt(m,new A.afJ(h,n))
+if(l!=null){q=!0
 s=1
 break}else{A.dk(a,!1).dH()
 q=!1
@@ -87760,9 +87765,9 @@ break}p=2
 s=6
 break
 case 4:p=3
-h=o
-l=A.ac(h)
-A.vX("Error verifying session: "+A.i(l))
+g=o
+k=A.ac(g)
+A.vX("Error verifying session: "+A.i(k))
 q=!1
 s=1
 break
@@ -87993,14 +87998,11 @@ return A.R($.jQ().mQ("users"),$async$$0)
 case 6:m=b
 l=A.ayt(m,new A.ain(h))
 if(l!=null){j=$.iP
-j.toString
-j.EZ("String","name",J.he(l,"name"))
+if(j!=null)j.EZ("String","name",J.he(l,"name"))
 j=$.iP
-j.toString
-j.EZ("String","password",J.he(l,"password"))
+if(j!=null)j.EZ("String","password",J.he(l,"password"))
 j=$.iP
-j.toString
-j.EZ("Int","permission",J.he(l,"permission"))}if(h.c!=null)A.dk(h.f,!1).X7(A.z_(new A.aio(),null,t.z))
+if(j!=null)j.EZ("Int","permission",J.he(l,"permission"))}if(h.c!=null)A.dk(h.f,!1).X7(A.z_(new A.aio(),null,t.z))
 o.push(5)
 s=4
 break
@@ -88043,9 +88045,12 @@ A.In.prototype={
 E8(a){return this.abG(a)},
 abG(a){var s=0,r=A.L(t.H),q
 var $async$E8=A.M(function(b,c){if(b===1)return A.I(c,r)
-while(true)switch(s){case 0:$.iP.C(0,"name")
-$.iP.C(0,"password")
-$.iP.C(0,"permission")
+while(true)switch(s){case 0:q=$.iP
+if(q!=null)q.C(0,"name")
+q=$.iP
+if(q!=null)q.C(0,"password")
+q=$.iP
+if(q!=null)q.C(0,"permission")
 q=a.a2(t.Pu)
 q.toString
 q.f.mZ(B.PI)
