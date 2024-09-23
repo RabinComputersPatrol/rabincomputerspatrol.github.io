@@ -4,7 +4,7 @@ import 'package:intl/intl.dart';
 class IssueReport {
   final DateTime date;
   final String time;
-  bool fixed;
+  double status;
   final String name;
   final String phoneNumber;
   final String problemDescription;
@@ -14,7 +14,7 @@ class IssueReport {
   IssueReport({
     required this.time,
     required this.date,
-    required this.fixed,
+    required this.status,
     required this.name,
     required this.phoneNumber,
     required this.problemDescription,
@@ -28,11 +28,11 @@ class IssueReport {
     return IssueReport(
       time: json['time'] ?? "00:00",
       date: dateFormat.parse(json['date']),
-      fixed: json['fixed'] == 1 ? true : false,
+      status: json['fixed'],
       name: json['name'],
       phoneNumber: json['phoneNumber'],
       problemDescription: json['problemDescription'],
-      priority: json['priority'],
+      priority: json['priority'] ?? 1,
       roomNumber: json['roomNumber'],
     );
   }
@@ -42,7 +42,7 @@ class IssueReport {
     return {
       'time': time,
       'date': dateFormat.format(date), // Format the date to 'dd/MM/yyyy'
-      'fixed': fixed ? 1 : 0, // Store boolean as 1 or 0s
+      'fixed': status, // Store boolean as 1 or 0s
       'name': name,
       'phoneNumber': phoneNumber,
       'problemDescription': problemDescription,

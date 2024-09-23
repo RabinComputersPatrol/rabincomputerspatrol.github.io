@@ -86,16 +86,19 @@ class _ReportPageState extends State<ReportPage> {
             SizedBox(
               height: 50,
               width: 200,
-              child: DialogToggleSwitch(
-                initialValue: widget.report.fixed,
-                onToggle: (value) async {
-                  // Update in database
+              child: DropdownMenu<double>(
+                dropdownMenuEntries: const [
+                  DropdownMenuEntry(value: 0, label: "Not Fixed"),
+                  DropdownMenuEntry(value: 0.5, label: "In Progress"),
+                  DropdownMenuEntry(value: 1, label: "Fixed"),
+                ],
+                onSelected: (value) async {
                   await DatabaseAPI.instance.uploadJson(
-                      (widget.report..fixed = value).toJson(),
+                      (widget.report..status = value ?? 0).toJson(),
                       "reports",
                       widget.report.generateDocumentId());
                 },
-                label: "Is Fixed",
+                initialSelection: widget.report.status,
               ),
             )
           ],
