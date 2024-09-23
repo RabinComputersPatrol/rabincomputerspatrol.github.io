@@ -79,107 +79,111 @@ class _SupportPageState extends State<SupportPage> {
     return Scaffold(
       body: Form(
         key: _formKey,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Flexible(
-                  child: Image(
-                    image: const AssetImage("assets/rabin-logo.png"),
-                    color: GlobalTheme.isDarkMode ? Colors.blueAccent : null,
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Flexible(
+                    child: Image(
+                      image: const AssetImage("assets/rabin-logo.png"),
+                      color: GlobalTheme.isDarkMode ? Colors.blueAccent : null,
+                    ),
                   ),
-                ),
-                const Flexible(
-                    child: Text(
-                  "Computer Problems Form",
-                  textScaler: TextScaler.linear(1.5),
-                ))
-              ],
-            ),
-            const SizedBox(height: 5),
-            // Room number field
-            DialogTextInput(
-              textEditingController: _roomNumberController,
-              label: 'Room Number',
-              keyboard: TextInputType.number,
-              formatter: TextFormatterBuilder.integerTextFormatter(),
-              onSubmit: (value) {
-                if (value.isEmpty) {
-                  // Show error if necessary
-                }
-              },
-            ),
-            const SizedBox(height: 5),
-            // Phone number field
-            DialogTextInput(
-              textEditingController: _phoneNumberController,
-              label: 'Phone Number (e.g 0540000000)',
-              keyboard: TextInputType.phone,
-              formatter: TextFormatterBuilder.integerTextFormatter(),
-              onSubmit: (value) {
-                if (value.isEmpty ||
-                    !RegExp(r'^\d{3}-\d{3}-\d{4}$').hasMatch(value)) {
-                  // Show error if necessary
-                }
-              },
-            ),
-            const SizedBox(height: 5),
-            // Name field
-            DialogTextInput(
-              textEditingController: _nameController,
-              label: 'Name',
-              onSubmit: (value) {
-                if (value.isEmpty) {
-                  // Show error if necessary
-                }
-              },
-            ),
-            const SizedBox(height: 5),
-            // Priority dropdown
-            const Text('דחיפות:', style: TextStyle(fontSize: 16)),
-            Flexible(
-              child: DropdownMenu<Priority>(
-                textStyle: TextStyle(
-                    color: _priority.color, fontWeight: FontWeight.bold),
-                initialSelection: _priority,
-                dropdownMenuEntries: [
-                  DropdownMenuEntry(
-                      value: Priorities.veryErgent, label: ('דחוף מאוד')),
-                  DropdownMenuEntry(value: Priorities.ergent, label: ('דחוף')),
-                  DropdownMenuEntry(
-                      value: Priorities.important, label: ('חשוב')),
-                  DropdownMenuEntry(value: Priorities.normal, label: ('רגיל')),
-                  DropdownMenuEntry(
-                      value: Priorities.nonErgent, label: ('לא דחוף')),
+                  const Flexible(
+                      child: Text(
+                    "Computer Problems Form",
+                    textScaler: TextScaler.linear(1.5),
+                  ))
                 ],
-                onSelected: (Priority? newValue) {
-                  setState(() {
-                    _priority = newValue ?? Priorities.normal;
-                  });
+              ),
+              const SizedBox(height: 5),
+              // Room number field
+              DialogTextInput(
+                textEditingController: _roomNumberController,
+                label: 'Room Number',
+                keyboard: TextInputType.number,
+                formatter: TextFormatterBuilder.integerTextFormatter(),
+                onSubmit: (value) {
+                  if (value.isEmpty) {
+                    // Show error if necessary
+                  }
                 },
               ),
-            ),
-            const SizedBox(height: 5),
-            // Problem description field
-            DialogTextInput(
-              textEditingController: _problemDescriptionController,
-              label: 'Problem Description',
-              keyboard: TextInputType.multiline,
-              onSubmit: (value) {
-                if (value.isEmpty) {
-                  // Show error if necessary
-                }
-              },
-            ),
-            const SizedBox(height: 5),
-            // Submit button
-            ElevatedButton(
-              onPressed: handleSubmit,
-              child: const Text('אישור'),
-            ),
-          ],
+              const SizedBox(height: 5),
+              // Phone number field
+              DialogTextInput(
+                textEditingController: _phoneNumberController,
+                label: 'Phone Number (e.g 0540000000)',
+                keyboard: TextInputType.phone,
+                formatter: TextFormatterBuilder.integerTextFormatter(),
+                onSubmit: (value) {
+                  if (value.isEmpty ||
+                      !RegExp(r'^\d{3}-\d{3}-\d{4}$').hasMatch(value)) {
+                    // Show error if necessary
+                  }
+                },
+              ),
+              const SizedBox(height: 5),
+              // Name field
+              DialogTextInput(
+                textEditingController: _nameController,
+                label: 'Name',
+                onSubmit: (value) {
+                  if (value.isEmpty) {
+                    // Show error if necessary
+                  }
+                },
+              ),
+              const SizedBox(height: 5),
+              // Priority dropdown
+              const Text('דחיפות:', style: TextStyle(fontSize: 16)),
+              Flexible(
+                child: DropdownMenu<Priority>(
+                  textStyle: TextStyle(
+                      color: _priority.color, fontWeight: FontWeight.bold),
+                  initialSelection: _priority,
+                  dropdownMenuEntries: [
+                    DropdownMenuEntry(
+                        value: Priorities.veryErgent, label: ('דחוף מאוד')),
+                    DropdownMenuEntry(
+                        value: Priorities.ergent, label: ('דחוף')),
+                    DropdownMenuEntry(
+                        value: Priorities.important, label: ('חשוב')),
+                    DropdownMenuEntry(
+                        value: Priorities.normal, label: ('רגיל')),
+                    DropdownMenuEntry(
+                        value: Priorities.nonErgent, label: ('לא דחוף')),
+                  ],
+                  onSelected: (Priority? newValue) {
+                    setState(() {
+                      _priority = newValue ?? Priorities.normal;
+                    });
+                  },
+                ),
+              ),
+              const SizedBox(height: 5),
+              // Problem description field
+              DialogTextInput(
+                textEditingController: _problemDescriptionController,
+                label: 'Problem Description',
+                keyboard: TextInputType.multiline,
+                onSubmit: (value) {
+                  if (value.isEmpty) {
+                    // Show error if necessary
+                  }
+                },
+              ),
+              const SizedBox(height: 5),
+              // Submit button
+              ElevatedButton(
+                onPressed: handleSubmit,
+                child: const Text('אישור'),
+              ),
+            ],
+          ),
         ),
       ),
       persistentFooterButtons: [
