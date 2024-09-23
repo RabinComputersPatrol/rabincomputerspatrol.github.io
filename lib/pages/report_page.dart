@@ -14,6 +14,7 @@ import 'package:rabincomputerspatrol/widgets/dialog_widgets/toggle_dialog_switch
 class ReportPage extends StatefulWidget {
   final IssueReport report;
   final Function dashboardCallback;
+
   const ReportPage(
       {super.key, required this.report, required this.dashboardCallback});
 
@@ -72,13 +73,14 @@ class _ReportPageState extends State<ReportPage> {
               padding: const EdgeInsets.only(left: 5, right: 5),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),
-                color: Priority.getPriorityColor(widget.report.priority),
+                color: Priority.getPriorityColor(
+                    widget.report.priority, GlobalTheme()),
               ),
               child: (Text(
                 "Priority: ${widget.report.priority}",
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  color: GlobalTheme.textColor,
+                  color: GlobalTheme().textColor,
                 ),
               )),
             ),

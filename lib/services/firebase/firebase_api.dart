@@ -29,7 +29,7 @@ class DatabaseAPI {
 
     try {
       QuerySnapshot querySnapshot =
-          await firestore!.collection(collectionPath).get();
+      await firestore!.collection(collectionPath).get();
       List<Map<String, dynamic>> documents = querySnapshot.docs.map((doc) {
         return doc.data() as Map<String, dynamic>;
       }).toList();
@@ -53,15 +53,15 @@ class DatabaseAPI {
     }
   }
 
-  Future<(Map<String, dynamic>, bool)> downloadJson(
-      String collectionPath, String documentId) async {
+  Future<(Map<String, dynamic>, bool)> downloadJson(String collectionPath,
+      String documentId) async {
     if (firestore == null) {
       throw Exception("Firebase not initialized");
     }
 
     try {
       DocumentSnapshot docSnapshot =
-          await firestore!.collection(collectionPath).doc(documentId).get();
+      await firestore!.collection(collectionPath).doc(documentId).get();
       if (docSnapshot.exists) {
         return (docSnapshot.data() as Map<String, dynamic>, true);
       } else {
@@ -80,5 +80,14 @@ class DatabaseAPI {
     }
 
     await firestore?.collection(collectionPath).doc(documentId).delete();
+  }
+
+  Future<void> addDocument(String collectionPath, String documentID,
+      Map<String, Object> data) async {
+    if (firestore == null) {
+      throw Exception("Firebase not initialized");
+    }
+
+    await firestore?.collection(collectionPath).doc(documentID).set(data);
   }
 }

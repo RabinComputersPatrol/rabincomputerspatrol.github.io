@@ -9,8 +9,8 @@ import 'package:collection/collection.dart';
 // Project imports:
 import 'package:rabincomputerspatrol/pages/dashboard_page.dart';
 import 'package:rabincomputerspatrol/services/firebase/firebase_api.dart';
-import 'package:rabincomputerspatrol/services/theme.dart';
 import 'package:rabincomputerspatrol/widgets/dialog_widgets/dialog_text_input.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class DashboardLoginDialog extends StatefulWidget {
   final BuildContext superContext;
@@ -68,31 +68,21 @@ class _DashboardLoginDialogState extends State<DashboardLoginDialog> {
                                 user["name"] == _usernameController.text &&
                                 user["password"] == _passwordController.text);
 
+                        // Logged in successfully
                         if (user != null) {
-                          // Logged in successfully
-                          if (mounted) {
-                            Navigator.of(superContext).pushReplacement(
-                                MaterialPageRoute(
-                                    builder: (superContext) =>
-                                        const DashboardPage()));
-                          }
-                        } else {
-                          // Handle incorrect credentials
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              backgroundColor:
-                                  Theme.of(context).dialogBackgroundColor,
-                              content: Text(
-                                'Invalid credentials',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: GlobalTheme.textColor,
-                                ),
-                              ),
-                            ),
-                          );
+                          SharedPreferences prefs = await SharedPreferences.getInstance();
+                          await prefs.setString('name', user["name"]);
+                          await prefs.setString('password', user["password"]);
+                          await prefs.setInt('permission', user["permission"]);
                         }
-                      } catch (e) {
+
+                        if (mounted) {
+                          Navigator.of(superContext).pushReplacement(
+                              MaterialPageRoute(
+                                  builder: (superContext) =>
+                                      const DashboardPage()));
+                        }
+                                            } catch (e) {
                         // Handle any error during the async operation
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(

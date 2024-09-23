@@ -1,6 +1,8 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
-
+import 'package:provider/provider.dart';
+import 'package:rabincomputerspatrol/pages/dashboard_page.dart';
+import 'package:rabincomputerspatrol/services/api/verify_session.dart';
 // Project imports:
 import 'package:rabincomputerspatrol/services/firebase/firebase_api.dart';
 import 'package:rabincomputerspatrol/services/priority.dart';
@@ -76,6 +78,10 @@ class _SupportPageState extends State<SupportPage> {
 
   @override
   Widget build(BuildContext context) {
+    final GlobalTheme theme = Provider.of<GlobalTheme>(context);
+    final double screenWidth = MediaQuery.of(context).size.width;
+    final double screenHeight = MediaQuery.of(context).size.height;
+
     return Scaffold(
       body: Form(
         key: _formKey,
@@ -88,14 +94,15 @@ class _SupportPageState extends State<SupportPage> {
                 Flexible(
                   child: Image(
                     image: const AssetImage("assets/rabin-logo.png"),
-                    color: GlobalTheme.isDarkMode ? Colors.blueAccent : null,
+                    color: theme.isDarkMode ? Colors.blueAccent.shade400 : null,
                   ),
                 ),
                 const Flexible(
                     child: Text(
                   "Computer Problems Form",
                   textScaler: TextScaler.linear(1.5),
-                ))
+                )),
+                const ThemeToggleButton(),
               ],
             ),
             const SizedBox(height: 5),
@@ -115,7 +122,7 @@ class _SupportPageState extends State<SupportPage> {
             // Phone number field
             DialogTextInput(
               textEditingController: _phoneNumberController,
-              label: 'Phone Number (e.g 0540000000)',
+              label: 'Phone Number (e.g 054-000-0000)',
               keyboard: TextInputType.phone,
               formatter: TextFormatterBuilder.integerTextFormatter(),
               onSubmit: (value) {
@@ -142,17 +149,19 @@ class _SupportPageState extends State<SupportPage> {
             Flexible(
               child: DropdownMenu<Priority>(
                 textStyle: TextStyle(
-                    color: _priority.color, fontWeight: FontWeight.bold),
+                    color: _priority.color,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: "Heebo"),
                 initialSelection: _priority,
                 dropdownMenuEntries: [
                   DropdownMenuEntry(
-                      value: Priorities.veryErgent, label: ('דחוף מאוד')),
-                  DropdownMenuEntry(value: Priorities.ergent, label: ('דחוף')),
+                      value: Priorities.veryUrgent, label: ('דחוף מאוד')),
+                  DropdownMenuEntry(value: Priorities.urgent, label: ('דחוף')),
                   DropdownMenuEntry(
                       value: Priorities.important, label: ('חשוב')),
                   DropdownMenuEntry(value: Priorities.normal, label: ('רגיל')),
                   DropdownMenuEntry(
-                      value: Priorities.nonErgent, label: ('לא דחוף')),
+                      value: Priorities.nonUrgent, label: ('לא דחוף')),
                 ],
                 onSelected: (Priority? newValue) {
                   setState(() {
@@ -163,15 +172,24 @@ class _SupportPageState extends State<SupportPage> {
             ),
             const SizedBox(height: 5),
             // Problem description field
-            DialogTextInput(
-              textEditingController: _problemDescriptionController,
-              label: 'Problem Description',
-              keyboard: TextInputType.multiline,
-              onSubmit: (value) {
-                if (value.isEmpty) {
-                  // Show error if necessary
-                }
-              },
+            Container(
+              width: screenWidth * 0.5,
+              child: DialogTextInput(
+                textEditingController: _problemDescriptionController,
+                label: 'תיאור בעיה',
+                keyboard: TextInputType.multiline,
+                allowEmptySubmission: false,
+                minLines: 10,
+                maxLines: null,
+                textDirection: TextDirection.rtl,
+                labelBehavior: FloatingLabelBehavior.auto,
+                labelAlignment: FloatingLabelAlignment.start,
+                onSubmit: (value) {
+                  if (value.isEmpty) {
+                    // Show error if necessary
+                  }
+                },
+              ),
             ),
             const SizedBox(height: 5),
             // Submit button
@@ -184,13 +202,31 @@ class _SupportPageState extends State<SupportPage> {
       ),
       persistentFooterButtons: [
         TextButton(
-          onPressed: () {
-            showDialog(
-              context: context,
-              builder: (context) => DashboardLoginDialog(
-                superContext: context,
-              ),
-            );
+          onPressed: () async {
+            VerifySession sessionVerifier = VerifySession();
+            bool isValidSession = await sessionVerifier.verifySession(context);
+
+            if (isValidSession) {
+              // Use push instead of pushReplacement to maintain the back stack
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => const DashboardPage()),
+              );
+            } else {
+              // Show the login dialog if the session is not valid
+              showDialog(
+                context: context,
+                builder: (context) => DashboardLoginDialog(superContext: context),
+              ).then((_) {
+                // Re-verify session after the dialog is closed
+                sessionVerifier.verifySession(context).then((isValidSession) {
+                  if (isValidSession) {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => const DashboardPage()),
+                    );
+                  }
+                });
+              });
+            }
           },
           child: const Text("© 2024 All rights reserved."),
         )
