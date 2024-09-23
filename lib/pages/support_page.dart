@@ -1,8 +1,6 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:rabincomputerspatrol/pages/dashboard_page.dart';
-import 'package:rabincomputerspatrol/services/api/verify_session.dart';
+
 // Project imports:
 import 'package:rabincomputerspatrol/services/firebase/firebase_api.dart';
 import 'package:rabincomputerspatrol/services/priority.dart';
@@ -85,44 +83,45 @@ class _SupportPageState extends State<SupportPage> {
     return Scaffold(
       body: Form(
         key: _formKey,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Flexible(
-                  child: Image(
-                    image: const AssetImage("assets/rabin-logo.png"),
-                    color: theme.isDarkMode ? Colors.blueAccent.shade400 : null,
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Flexible(
+                    child: Image(
+                      image: const AssetImage("assets/rabin-logo.png"),
+                      color: theme.isDarkMode ? Colors.blueAccent.shade400 : null,
+                    ),
                   ),
-                ),
-                const Flexible(
-                    child: Text(
-                  "Computer Problems Form",
-                  textScaler: TextScaler.linear(1.5),
-                )),
+                  const Flexible(
+                      child: Text(
+                    "Computer Problems Form",
+                    textScaler: TextScaler.linear(1.5),
+                  )),
                 const ThemeToggleButton(),
-              ],
-            ),
-            const SizedBox(height: 5),
-            // Room number field
-            DialogTextInput(
-              textEditingController: _roomNumberController,
-              label: 'Room Number',
-              keyboard: TextInputType.number,
-              formatter: TextFormatterBuilder.integerTextFormatter(),
-              onSubmit: (value) {
-                if (value.isEmpty) {
-                  // Show error if necessary
-                }
-              },
-            ),
-            const SizedBox(height: 5),
-            // Phone number field
-            DialogTextInput(
-              textEditingController: _phoneNumberController,
-              label: 'Phone Number (e.g 054-000-0000)',
+                ],
+              ),
+              const SizedBox(height: 5),
+              // Room number field
+              DialogTextInput(
+                textEditingController: _roomNumberController,
+                label: 'Room Number',
+                keyboard: TextInputType.number,
+                formatter: TextFormatterBuilder.integerTextFormatter(),
+                onSubmit: (value) {
+                  if (value.isEmpty) {
+                    // Show error if necessary
+                  }
+                },
+              ),
+              const SizedBox(height: 5),
+              // Phone number field
+              DialogTextInput(
+                textEditingController: _phoneNumberController,
+                label: 'Phone Number (e.g 054-000-0000)',
               keyboard: TextInputType.phone,
               formatter: TextFormatterBuilder.integerTextFormatter(),
               onSubmit: (value) {
@@ -156,23 +155,25 @@ class _SupportPageState extends State<SupportPage> {
                 dropdownMenuEntries: [
                   DropdownMenuEntry(
                       value: Priorities.veryUrgent, label: ('דחוף מאוד')),
-                  DropdownMenuEntry(value: Priorities.urgent, label: ('דחוף')),
-                  DropdownMenuEntry(
-                      value: Priorities.important, label: ('חשוב')),
-                  DropdownMenuEntry(value: Priorities.normal, label: ('רגיל')),
-                  DropdownMenuEntry(
-                      value: Priorities.nonUrgent, label: ('לא דחוף')),
-                ],
-                onSelected: (Priority? newValue) {
-                  setState(() {
-                    _priority = newValue ?? Priorities.normal;
-                  });
-                },
+                    DropdownMenuEntry(
+                        value: Priorities.urgent, label: ('דחוף')),
+                    DropdownMenuEntry(
+                        value: Priorities.important, label: ('חשוב')),
+                    DropdownMenuEntry(
+                        value: Priorities.normal, label: ('רגיל')),
+                    DropdownMenuEntry(
+                        value: Priorities.nonUrgent, label: ('לא דחוף')),
+                  ],
+                  onSelected: (Priority? newValue) {
+                    setState(() {
+                      _priority = newValue ?? Priorities.normal;
+                    });
+                  },
+                ),
               ),
-            ),
-            const SizedBox(height: 5),
-            // Problem description field
-            Container(
+              const SizedBox(height: 5),
+              // Problem description field
+              Container(
               width: screenWidth * 0.5,
               child: DialogTextInput(
                 textEditingController: _problemDescriptionController,
@@ -188,16 +189,17 @@ class _SupportPageState extends State<SupportPage> {
                   if (value.isEmpty) {
                     // Show error if necessary
                   }
-                },
+                  },
+                ),
               ),
-            ),
-            const SizedBox(height: 5),
-            // Submit button
-            ElevatedButton(
-              onPressed: handleSubmit,
-              child: const Text('אישור'),
-            ),
-          ],
+              const SizedBox(height: 5),
+              // Submit button
+              ElevatedButton(
+                onPressed: handleSubmit,
+                child: const Text('אישור'),
+              ),
+            ],
+          ),
         ),
       ),
       persistentFooterButtons: [
