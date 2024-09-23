@@ -9,7 +9,6 @@ import 'package:rabincomputerspatrol/services/api/issue_report.dart';
 import 'package:rabincomputerspatrol/services/firebase/firebase_api.dart';
 import 'package:rabincomputerspatrol/services/priority.dart';
 import 'package:rabincomputerspatrol/services/theme.dart';
-import 'package:rabincomputerspatrol/widgets/dialog_widgets/toggle_dialog_switch.dart';
 
 class ReportPage extends StatefulWidget {
   final IssueReport report;
@@ -78,9 +77,9 @@ class _ReportPageState extends State<ReportPage> {
               ),
               child: (Text(
                 "Priority: ${widget.report.priority}",
-                style: TextStyle(
+                style: const TextStyle(
                   fontWeight: FontWeight.bold,
-                  color: GlobalTheme().textColor,
+                  color: Colors.white,
                 ),
               )),
             ),

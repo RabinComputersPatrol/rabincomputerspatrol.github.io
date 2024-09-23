@@ -3,9 +3,9 @@ import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
 
 class GlobalTheme extends ChangeNotifier {
-  bool _isDarkMode = false;
+  static bool _isDarkMode = false;
 
-  bool get isDarkMode => _isDarkMode;
+  static bool get isDarkMode => _isDarkMode;
 
   Color get textColor => Colors.red;
 
@@ -54,7 +54,7 @@ class ThemeToggleButton extends StatelessWidget {
     final themeNotifier = Provider.of<GlobalTheme>(context);
 
     return IconButton(
-      icon: themeNotifier.isDarkMode
+      icon: GlobalTheme.isDarkMode
           ? const Icon(Icons.light_mode)
           : const Icon(Icons.dark_mode),
       onPressed: () {

@@ -153,13 +153,13 @@ class _SupportPageState extends State<SupportPage> {
                 initialSelection: _priority,
                 dropdownMenuEntries: [
                   DropdownMenuEntry(
-                      value: Priorities.veryErgent, label: ('דחוף מאוד')),
-                  DropdownMenuEntry(value: Priorities.ergent, label: ('דחוף')),
+                      value: Priorities.veryUrgent, label: ('דחוף מאוד')),
+                  DropdownMenuEntry(value: Priorities.urgent, label: ('דחוף')),
                   DropdownMenuEntry(
                       value: Priorities.important, label: ('חשוב')),
                   DropdownMenuEntry(value: Priorities.normal, label: ('רגיל')),
                   DropdownMenuEntry(
-                      value: Priorities.nonErgent, label: ('לא דחוף')),
+                      value: Priorities.nonUrgent, label: ('לא דחוף')),
                 ],
                 onSelected: (Priority? newValue) {
                   setState(() {
