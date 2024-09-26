@@ -41,19 +41,19 @@ class _DashboardPageState extends State<DashboardPage> {
                   columns: [
                     const DataColumn(label: Text("Actions")),
                     DataColumn(
-                        label: const Text("Phone Number"),
-                        onSort: (columnIndex, ascending) => _onSort(columnIndex,
-                            ascending, (report) => report.phoneNumber)),
+                      label: const Text('Room #'),
+                      onSort: (columnIndex, ascending) => _onSort(columnIndex,
+                          ascending, (report) => report.roomNumber),
+                    ),
                     DataColumn(
                       label: const Text('Reporter Name'),
                       onSort: (columnIndex, ascending) => _onSort(
                           columnIndex, ascending, (report) => report.name),
                     ),
                     DataColumn(
-                      label: const Text('Room #'),
-                      onSort: (columnIndex, ascending) => _onSort(columnIndex,
-                          ascending, (report) => report.roomNumber),
-                    ),
+                        label: const Text("Phone Number"),
+                        onSort: (columnIndex, ascending) => _onSort(columnIndex,
+                            ascending, (report) => report.phoneNumber)),
                     DataColumn(
                       label: const Text('Priority'),
                       onSort: (columnIndex, ascending) => _onSort(
@@ -85,9 +85,9 @@ class _DashboardPageState extends State<DashboardPage> {
                         },
                         tooltip: "View & Edit",
                       )),
-                      DataCell((Text(report.phoneNumber))),
-                      DataCell(Text(report.name)),
                       DataCell(Text(report.roomNumber.toString())),
+                      DataCell(Text(report.name)),
+                      DataCell((Text(report.phoneNumber))),
                       DataCell(Text(report.priority.toString())),
                       DataCell(
                         Tooltip(

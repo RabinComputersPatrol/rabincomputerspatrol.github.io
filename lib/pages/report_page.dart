@@ -49,9 +49,8 @@ class _ReportPageState extends State<ReportPage> {
                   textScaler: const TextScaler.linear(1),
                 ),
                 const SizedBox(width: 15),
-                const Icon(Icons.call_outlined),
-                TextButton(
-                  child: Text(widget.report.phoneNumber),
+                IconButton(
+                  icon: const Icon(Icons.call_outlined),
                   onPressed: () async {
                     Uri url = Uri(
                       scheme: "tel",
